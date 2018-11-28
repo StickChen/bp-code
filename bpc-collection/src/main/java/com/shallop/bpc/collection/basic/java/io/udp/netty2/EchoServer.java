@@ -1,0 +1,32 @@
+package com.shallop.bpc.collection.basic.java.io.udp.netty2;
+
+import io.netty.bootstrap.Bootstrap;
+import io.netty.channel.EventLoopGroup;
+import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.nio.NioDatagramChannel;
+
+/**
+ * @author StickChen
+ * @date 2017/1/14
+ */
+public class EchoServer {
+
+	public static void main(String[] args) throws InterruptedException {
+
+		Bootstrap b = new Bootstrap();
+
+		EventLoopGroup group = new NioEventLoopGroup();
+
+		b.group(group)
+
+		.channel(NioDatagramChannel.class)
+
+		.handler(new EchoSeverHandler());
+
+		// 服务端监听在9999端口
+
+		b.bind(9999).sync().channel().closeFuture().await();
+
+	}
+
+}

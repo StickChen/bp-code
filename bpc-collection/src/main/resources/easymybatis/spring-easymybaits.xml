@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 替换SqlSessionFactoryBean -->
+    <bean id="sqlSessionFactory"
+          class="net.oschina.durcframework.easymybatis.ext.SqlSessionFactoryBeanExt">
+        <property name="dataSource" ref="dataSource" />
+        <!--<property name="configLocation">
+            <value>classpath:mybatis/mybatisConfig.xml</value>
+        </property>-->
+        <property name="mapperLocations">
+            <list>
+                <value>classpath:easymybatis/mappers/*.xml</value>
+            </list>
+        </property>
+        <property name="typeAliasesPackage" value="com.shallop.bpc.collection.persistent.mybatis.entity"/>
+        <!-- dao所在的包名,跟MapperScannerConfigurer的basePackage一致
+            多个用;隔开
+        -->
+        <property name="basePackage" value="com.shallop.bpc.collection.persistent.mybatis.dao" />
+
+    </bean>
+</beans>
