@@ -17,12 +17,13 @@ public class Acceptor {
             return null;
         }
 
-        //
+        // 拒绝，忽略比响应编号小的prepare请求
         if (this.promisedID == null || proposal.getId() > promisedID) {
+            // 承诺需要用
             promisedID = proposal.getId();
+            // 返回最大的
             return new Proposal(acceptedID, acceptedValue, proposerID);
         }
-
         return null;
     }
 

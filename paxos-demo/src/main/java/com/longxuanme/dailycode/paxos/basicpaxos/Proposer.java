@@ -82,6 +82,9 @@ public class Proposer implements Runnable {
             return true;
         }
 
+        // 可监测acceptor是否已经达成决议，需修改返回结果
+
+
         return false;
     }
 
@@ -100,6 +103,8 @@ public class Proposer implements Runnable {
             pt("Complete cycleCount " + cycleCount + " " + name + " " + proposal);
             return true;
         }
+        // 不能使用通过的提案中序列号最大的决策
+        // 可监测acceptor是否已经达成决议，需修改返回结果
 
         return false;
     }

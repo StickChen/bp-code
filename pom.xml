@@ -13,6 +13,7 @@
         <module>bpc-parent</module>
         <module>bpc-collection</module>
         <module>paxos-demo</module>
+        <module>web-demo</module>
         <!--<module>paxos-ref</module>-->
     </modules>
 
