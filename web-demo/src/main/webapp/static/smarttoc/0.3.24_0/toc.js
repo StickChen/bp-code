@@ -2343,6 +2343,7 @@ const extractArticle = function(rootElement = document) {
 
   // weigh nodes by factor: "selector", "distance from this node"
   const weights = {
+      '.Node-self':[0, 100, 60, 40, 30, 25, 22],
     h1: [0, 100, 60, 40, 30, 25, 22].map(s => s * 0.4),
     h2: [0, 100, 60, 40, 30, 25, 22],
     h3: [0, 100, 60, 40, 30, 25, 22].map(s => s * 0.5),
