@@ -1,0 +1,32 @@
+.toc {
+    right:15px;
+    bottom: 50px;
+    background: #fefefe;
+    width: auto;
+    position: fixed;
+    border: 1px solid #ddd;
+    color: #333;
+    padding:5px 20px 5px 10px;
+}
+.toc a {
+    color: #333;
+}
+.toc-active {
+    color: #000;
+    font-weight: bold;
+}
+.toc .right {
+    right: 0
+}
+.toc-btn{
+    position: fixed;
+    right: 0;
+    bottom: 50px;
+    height: 15px;
+    width: 15px;
+    background: gray;
+	cursor:pointer;
+}
+.hidden{
+    display:none;
+}
