@@ -1,12 +1,10 @@
 
 
 #TocContainer{
+    z-index: 99;
     position: absolute;
-    width:200px;
     height: 100%;
-    border: 1px solid;
-    overflow: hidden;
-    font-size: 14px;
+    width:0;
 }
 
 
@@ -17,10 +15,18 @@
     width: 250px;
     height: 440px;*/
     overflow: auto;
+    width:200px;
+    margin-left: 20px;
+    position: absolute;
+    border: 1px #dddddd;
+    overflow: hidden;
+    font-size: 14px;
+    height: inherit;
 }
 
 #sideToolbar ul, #sideToolbar ol {
     padding: 0px;
+
 }
 
 #sideToolbar li {
@@ -52,9 +58,9 @@
 }
 
 #sideCatalog-catalog {
-    padding-top: 18px;
+    /*padding-top: 18px;*/
     overflow: hidden;
-    padding-left: 23px;
+    /*padding-left: 23px;*/
     position: relative
 }
 
@@ -146,24 +152,25 @@
 }
 
 #sideCatalogBtn {
-    background: url("http://www.longxuanme.com/resource/image?name=img-20181204152402232.gif") no-repeat scroll 0 0 transparent;
+    /*background: url("http://www.longxuanme.com/resource/image?name=img-20181204152402232.gif") no-repeat scroll 0 0 transparent;*/
+    background-size: 20px;
     cursor: pointer;
     display: block;
-    height: 45px;
-    margin-bottom: 5px;
-    margin-left: 5px;
+    height: 20px;
     position: relative;
-    width: 45px;
-    margin-top: 10px;
-    outline: 0
+    width: 20px;
+    margin-top: 100px;
+    outline: 0;
+    background-color: #ddd;
 }
 
 #sideCatalogBtn:hover {
-    background: url("http://www.longxuanme.com/resource/image?name=img-20181204152402232.gif") no-repeat scroll -154px 0 transparent
+    /*background: url("http://www.longxuanme.com/resource/image?name=img-20181204152402232.gif") no-repeat scroll -154px 0 transparent*/
 }
 
 .sideCatalogBtnDisable {
-    background: url("http://www.longxuanme.com/resource/image?name=img-20181204152402232.gif") no-repeat scroll -104px 0 transparent !important
+    /*background: url("http://www.longxuanme.com/resource/image?name=img-20181204152402232.gif") no-repeat scroll -104px 0 transparent !important*/
+    background-color: white !important;
 }
 
 #sideToolbar-up {

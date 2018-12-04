@@ -33,7 +33,10 @@ function scriptBody(){
     }else {
         $('#TocContainer').empty();
     }
-    $('.normal-view').css({left: '200px'});
+
+    // 需将主体宽度减小
+    // $('.normal-view').css({left: '200px'});
+    // $('.DocumentContainer').css({width: $('.DocumentContainer').width() - 200});
 
     var body = $('body'),
         sideToolbar = 'sideToolbar',
@@ -41,7 +44,7 @@ function scriptBody(){
         catalog = 'sideCatalog-catalog',
         catalogBtn = 'sideCatalogBtn',
         sideToolbarUp = 'sideToolbar-up',
-        i = '<div id="sideToolbar" style="display:block;">\<div class="sideCatalogBg" id="sideCatalog">\<div id="sideCatalog-sidebar">\<div class="sideCatalog-sidebar-top"></div>\<div class="sideCatalog-sidebar-bottom"></div>\</div>\<div id="sideCatalog-catalog">\<ul class="nav"style="zoom:1">\</ul>\</div>\</div>\<a href="javascript:void(0);" id="sideCatalogBtn" class="sideCatalogBtnDisable"></a>\</div>',
+        i = '<div id="sideToolbar" style="display:block;">\<div class="sideCatalogBg" id="sideCatalog">\<div id="sideCatalog-sidebar">\<div class="sideCatalog-sidebar-top"></div>\<div class="sideCatalog-sidebar-bottom"></div>\</div>\<div id="sideCatalog-catalog">\<ul class="nav"style="zoom:1">\</ul>\</div>\</div>\</div><a href="javascript:void(0);" id="sideCatalogBtn" ></a>',
         ulHtml = '',
         k = 0,
         l1 = 0,
@@ -93,34 +96,6 @@ function scriptBody(){
                 });
         });
 
-    /*
-    h1s.each(function (t) {
-        var header = $(this),
-            headerDom = header[0];
-
-        var title = header.text();
-        var text = header.text();
-
-        header.attr('id', 'autoid-' + l1 + '-' + l2 + '-' + l3);
-        //if (!u.attr('id')) {
-        //    u.attr('id', 'autoid-' + l + '-' + m + '-' + n)
-        //};
-        if (headerDom.localName === 'h2') {
-            l1++;
-            l2 = 0;
-            if (text.length > 14) text = text.substr(0, 12) + "...";
-            ulHtml += '<li><span>' + l1 + '&nbsp&nbsp</span><a href="#' + header.attr('id') + '" title="' + title + '">' + text + '</a><span class="sideCatalog-dot"></span></li>';
-        } else if (headerDom.localName === 'h3') {
-            l2++;
-            l3 = 0;
-                if (text.length > 12) text = text.substr(0, 10) + "...";
-                ulHtml += '<li class="h2Offset"><span>' + l1 + '.' + l2 + '&nbsp&nbsp</span><a href="#' + header.attr('id') + '" title="' + title + '">' + text + '</a></li>';
-        } else if (headerDom.localName === 'h4') {
-            l3++;
-                ulHtml += '<li class="h3Offset"><span>' + l1 + '.' + l2 + '.' + l3 + '&nbsp&nbsp</span><a href="#' + header.attr('id') + '" title="' + title + '">' + header.text() + '</a></li>';
-        }
-    });
-    */
 
     $('#' + catalog + '>ul').html(ulHtml);
     // 滚动当前位置
@@ -131,12 +106,12 @@ function scriptBody(){
     // });
 
     // 显示隐藏目录
-    $sideCatelog = $('#' + sideCatalog);
+    $sideToolbar = $('#' + sideToolbar);
     $('#' + catalogBtn).on('click', function () {
         if ($(this).hasClass('sideCatalogBtnDisable')) {
-            $sideCatelog.css('visibility', 'hidden')
+            $sideToolbar.css('visibility', 'hidden')
         } else {
-            $sideCatelog.css('visibility', 'visible')
+            $sideToolbar.css('visibility', 'visible')
         }
         $(this).toggleClass('sideCatalogBtnDisable')
     });
