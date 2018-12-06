@@ -1,4 +1,7 @@
 
+.cssVisibility{
+    visibility: hidden;
+}
 
 #TocContainer{
     z-index: 99;
@@ -7,6 +10,13 @@
     width:0;
 }
 
+#sideToolbarContainer{
+    width:250px;
+    position: absolute;
+    border: 1px #dddddd;
+    overflow: auto;
+    height: 100%;
+}
 
 #sideToolbar {
     /*position: fixed;
@@ -14,14 +24,11 @@
     right: 25px;
     width: 250px;
     height: 440px;*/
-    overflow: auto;
-    width:200px;
     margin-left: 20px;
     position: absolute;
     border: 1px #dddddd;
-    overflow: hidden;
-    font-size: 14px;
-    height: inherit;
+    overflow: auto;
+    height: 100%;
 }
 
 #sideToolbar ul, #sideToolbar ol {
@@ -83,10 +90,11 @@
 }
 
 #sideCatalog li {
-    margin: 0px;
+    margin: 0;
     padding: 0 7px;
     text-align: left;
-    position: relative
+    position: relative;
+    margin-top: 1px;
 }
 
 #sideCatalog li:hover {
@@ -110,7 +118,7 @@
     font-family: Arial;
     font-size: 14px;
     font-weight: bold;
-    padding-right: 5px
+    padding-right: 3px
 }
 
 #sideCatalog li.h2Offset {
@@ -127,7 +135,8 @@
     white-space: nowrap;
     text-decoration: none;
     color: #555;
-    font-weight: bold
+    font-size: 14px;
+    font-family:'Arial', 'sans-serif';
 }
 
 .sideCatalog-dot {
