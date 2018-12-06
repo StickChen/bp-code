@@ -161,6 +161,15 @@
     width: 18px
 }
 
+#sideCatalogRefreshBtn{
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    position: relative;
+    margin-top: 10px;
+    background-color: #ddd;
+}
+
 #sideCatalogBtn {
     /*background: url("http://www.longxuanme.com/resource/image?name=img-20181204152402232.gif") no-repeat scroll 0 0 transparent;*/
     background-size: 20px;

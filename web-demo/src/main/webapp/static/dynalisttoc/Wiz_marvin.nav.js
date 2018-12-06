@@ -1,48 +1,49 @@
 $(function () {
 
-    let intervalScriptBody = setInterval(intervalBody, 5000);
-    let isScrollSpy = 0;
+    $('.normal-view').before('<div id="TocContainer"><div id="sideToolbarContainer" class="cssVisibility"></div><a href="javascript:void(0);" id="sideCatalogBtn" ></a><div  id="sideCatalogRefreshBtn" ></div></div>');
+    // 显示隐藏目录
+    $('#sideCatalogBtn').on('click', function () {
+        $("#sideToolbarContainer").toggleClass('cssVisibility')
+        $(this).toggleClass('sideCatalogBtnDisable')
+    });
+    $('#sideCatalogRefreshBtn').on('click', function () {
+        let scrollTop = $('#sideToolbar').scrollTop();
+        scriptBody()
+        $('#sideToolbar').scrollTop(scrollTop);
+        // 太卡了，去掉吧
+        // scrollSpy();
+    })
+
+    let intervalScriptBody = setInterval(intervalBody, 3000);
 
     function intervalBody() {
         if($('.Node-children').length > 1){
             scriptBody();
             clearInterval(intervalScriptBody);
             intervalScriptBody = null;
-            if(isScrollSpy === 1) {
-                scrollSpy();
-            }
-            ++isScrollSpy;
         }
     }
 
-    MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
-
-    var observer = new MutationObserver(function(mutations, observer) {
-        if(!intervalScriptBody) {
-            intervalScriptBody = setInterval(intervalBody, 10000);
-        }
-    });
-
-    // 定义变化元素
-    observer.observe($('div.Document-rootNode')[0], {
-        subtree: true,
-        attributes: true
-    });
+    // 自动刷新
+    // MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
+    //
+    // var observer = new MutationObserver(function(mutations, observer) {
+    //     if(!intervalScriptBody) {
+    //         intervalScriptBody = setInterval(intervalBody, 10000);
+    //     }
+    // });
+    //
+    // // 定义变化元素
+    // observer.observe($('div.Document-rootNode')[0], {
+    //     subtree: true,
+    //     attributes: true
+    // });
 
 });
 
 function scriptBody(){
     console.log("dynalist toc");
-    if($('#TocContainer').length === 0) {
-        $('.normal-view').before('<div id="TocContainer"><div id="sideToolbarContainer" class="cssVisibility"></div><a href="javascript:void(0);" id="sideCatalogBtn" ></a></div>');
-        // 显示隐藏目录
-        $('#sideCatalogBtn').on('click', function () {
-            $("#sideToolbarContainer").toggleClass('cssVisibility')
-            $(this).toggleClass('sideCatalogBtnDisable')
-        });
-    }else {
-        $('#sideToolbarContainer').empty();
-    }
+    $('#sideToolbarContainer').empty();
 
     // 需将主体宽度减小
     // $('.normal-view').css({left: '200px'});
@@ -79,7 +80,7 @@ function scriptBody(){
             header1.attr('id', 'autoid-' + l1 + '-' + l2 + '-' + l3);
             // if (text1.length > 14) text1 = text1.substr(0, 12) + "...";
 
-            ulHtml += '<li><span>' + l1 + '&nbsp&nbsp</span><a id="a_' + header1.attr('id') + '" href="#' + header1.attr('id') + '" title="' + title1 + '">' + text1 + '</a><span class="sideCatalog-dot"></span></li>';
+            ulHtml += '<li><span>' + l1 + '&nbsp&nbsp</span><a class="head_a" id="a_' + header1.attr('id') + '" href="#' + header1.attr('id') + '" title="' + title1 + '">' + text1 + '</a><span class="sideCatalog-dot"></span></li>';
 
             $(headerContainer1.children()[1]).children()
                 .each(function (i) {
@@ -91,7 +92,7 @@ function scriptBody(){
                     var text2 = header2.text();
                     header2.attr('id', 'autoid-' + l1 + '-' + l2 + '-' + l3);
                     // if (text2.length > 14) text2 = text2.substr(0, 12) + "...";
-                    ulHtml += '<li class="h2Offset"><span>' + l1 + '.' + l2 + '&nbsp&nbsp</span><a id="a_' + header2.attr('id') + '" href="#' + header2.attr('id') + '" title="' + title2 + '">' + text2 + '</a></li>';
+                    ulHtml += '<li class="h2Offset"><span>' + l1 + '.' + l2 + '&nbsp&nbsp</span><a class="head_a" id="a_' + header2.attr('id') + '" href="#' + header2.attr('id') + '" title="' + title2 + '">' + text2 + '</a></li>';
 
                     $(headerContainer2.children()[1]).children()
                         .each(function (i) {
@@ -102,7 +103,7 @@ function scriptBody(){
                             var text3 = header3.text();
                             header3.attr('id', 'autoid-' + l1 + '-' + l2 + '-' + l3);
                             // if (text3.length > 14) text3 = text3.substr(0, 12) + "...";
-                            ulHtml += '<li class="h3Offset"><span>' + l1 + '.' + l2 + '.' + l3 + '&nbsp&nbsp</span><a id="a_' + header3.attr('id') + '" href="#' + header3.attr('id') + '" title="' + title3 + '">' + text3 + '</a></li>';
+                            ulHtml += '<li class="h3Offset"><span>' + l1 + '.' + l2 + '.' + l3 + '&nbsp&nbsp</span><a class="head_a" id="a_' + header3.attr('id') + '" href="#' + header3.attr('id') + '" title="' + title3 + '">' + text3 + '</a></li>';
                         });
                 });
         });
@@ -110,8 +111,8 @@ function scriptBody(){
 
     $('#' + catalog + '>ul').html(ulHtml);
     // 滚动当前位置
-    body.data('spy', 'scroll');
-    body.data('target', '.sideCatalogBg');
+    // body.data('spy', 'scroll');
+    // body.data('target', '.sideCatalogBg');
     // $('body').scrollspy({
     //     target: '.sideCatalogBg'
     // });
@@ -141,6 +142,13 @@ function scriptBody(){
 
     // $("#sideCatalog-catalog").scrollspy();
 
+    // 优化滚动
+    $('.head_a').on('click', function (e) {
+        e.preventDefault();
+        let aHref = $(this).attr('href');
+        let top = $(aHref).position().top;
+        $('.DocumentContainer').scrollTop(top - 200);
+    })
 
 };
 
