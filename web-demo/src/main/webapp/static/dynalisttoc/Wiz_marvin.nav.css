@@ -22,13 +22,14 @@
     /*position: fixed;
     bottom: -12px;
     right: 25px;
-    width: 250px;
     height: 440px;*/
+    min-width: 250px;
     margin-left: 20px;
     position: absolute;
     border: 1px #dddddd;
     overflow: auto;
     height: 100%;
+    background-color: #fff;
 }
 
 #sideToolbar ul, #sideToolbar ol {
