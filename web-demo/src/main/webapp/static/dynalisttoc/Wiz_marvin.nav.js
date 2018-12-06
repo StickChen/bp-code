@@ -147,7 +147,7 @@ function scriptBody(){
         e.preventDefault();
         let aHref = $(this).attr('href');
         let top = $(aHref).position().top;
-        $('.DocumentContainer').scrollTop(top - 200);
+        $('.DocumentContainer').scrollTop(top - 100);
     })
 
 };
