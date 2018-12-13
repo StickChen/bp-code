@@ -1,4 +1,18 @@
-
+#barSplitterContainer{
+    width: 280px;
+    position: absolute;
+    border: 1px #dddddd;
+    overflow: auto;
+    height: 100%;
+}
+.splitter{
+    position: fixed;
+    width: inherit;
+    background-color: white;
+    cursor: ew-resize;
+    height: 25px;
+    bottom: 0;
+}
 .cssVisibility{
     visibility: hidden;
 }
@@ -11,11 +25,10 @@
 }
 
 #sideToolbarContainer{
-    width:250px;
-    position: absolute;
+    margin-bottom: 25px;
     border: 1px #dddddd;
     overflow: auto;
-    height: 100%;
+    height: auto;
 }
 
 #sideToolbar {
@@ -28,8 +41,8 @@
     position: absolute;
     border: 1px #dddddd;
     overflow: auto;
-    height: 100%;
     background-color: #fff;
+    height: 100%;
 }
 
 #sideToolbar ul, #sideToolbar ol {
@@ -97,10 +110,11 @@
     position: relative;
     margin-top: 1px;
 }
-
+/*
 #sideCatalog li:hover {
     background-color: #f5f5f5
 }
+*/
 
 #sideCatalog-catalog ul .active {
     background-color: #f5f5f5

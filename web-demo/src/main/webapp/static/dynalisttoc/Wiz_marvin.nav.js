@@ -1,9 +1,9 @@
 $(function () {
 
-    $('.normal-view').before('<div id="TocContainer"><div id="sideToolbarContainer" class="cssVisibility"></div><a href="javascript:void(0);" id="sideCatalogBtn" ></a><div  id="sideCatalogRefreshBtn" ></div></div>');
+    $('.normal-view').before('<div id="TocContainer"><div id="barSplitterContainer" class="cssVisibility"><div id="sideToolbarContainer"></div><div class="splitter"></div></div><a href="javascript:void(0);" id="sideCatalogBtn" ></a><div  id="sideCatalogRefreshBtn" ></div></div>');
     // 显示隐藏目录
     $('#sideCatalogBtn').on('click', function () {
-        $("#sideToolbarContainer").toggleClass('cssVisibility')
+        $("#barSplitterContainer").toggleClass('cssVisibility')
         $(this).toggleClass('sideCatalogBtnDisable')
     });
     $('#sideCatalogRefreshBtn').on('click', function () {
@@ -55,7 +55,7 @@ function scriptBody(){
         catalog = 'sideCatalog-catalog',
         catalogBtn = 'sideCatalogBtn',
         sideToolbarUp = 'sideToolbar-up',
-        i = '<div id="sideToolbar" style="display:block;">\<div class="sideCatalogBg" id="sideCatalog">\<div id="sideCatalog-sidebar">\<div class="sideCatalog-sidebar-top"></div>\<div class="sideCatalog-sidebar-bottom"></div>\</div>\<div id="sideCatalog-catalog">\<ul class="nav"style="zoom:1">\</ul>\</div>\</div>\</div>',
+        i = '<div id="sideToolbar" style="display:block;">\<div class="sideCatalogBg" id="sideCatalog">\<div id="sideCatalog-catalog">\<ul class="nav"style="zoom:1">\</ul>\</div>\</div>\</div>',
         ulHtml = '',
         k = 0,
         l1 = 0,
@@ -135,8 +135,8 @@ function scriptBody(){
 
 
     // 可调整大小
-    $("#sideToolbarContainer").resizable({
-        // handleSelector: ".splitter",
+    $("#barSplitterContainer").resizable({
+        handleSelector: ".splitter",
         resizeHeight: false
     });
 
