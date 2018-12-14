@@ -184,6 +184,10 @@
     background-color: #ddd;
 }
 
+#sideCatalogRefreshBtn:hover {
+    background-color: #f3d4d3;
+}
+
 #sideCatalogBtn {
     /*background: url("http://www.longxuanme.com/resource/image?name=img-20181204152402232.gif") no-repeat scroll 0 0 transparent;*/
     background-size: 20px;
@@ -203,7 +207,7 @@
 
 .sideCatalogBtnDisable {
     /*background: url("http://www.longxuanme.com/resource/image?name=img-20181204152402232.gif") no-repeat scroll -104px 0 transparent !important*/
-    background-color: white !important;
+    background-color: #dcecf9 !important;
 }
 
 #sideToolbar-up {
