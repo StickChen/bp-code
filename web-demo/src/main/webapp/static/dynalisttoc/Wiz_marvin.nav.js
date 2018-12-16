@@ -146,8 +146,9 @@ function scriptBody(){
     $('.head_a').on('click', function (e) {
         e.preventDefault();
         let aHref = $(this).attr('href');
-        let top = $(aHref).position().top;
-        $('.DocumentContainer').scrollTop(top - 100);
+        let top = $(aHref).offset().top;
+        // window.location.href = window.location.href + aHref;
+        $('.DocumentContainer').scrollTop($('.DocumentContainer').scrollTop() + top - 100);
     })
 
 };
