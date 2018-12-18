@@ -1,48 +1,84 @@
 $(function () {
 
-    $('.normal-view').before('<div id="TocContainer"><div id="barSplitterContainer" class="cssVisibility"><div id="sideToolbarContainer"></div><div class="splitter"></div></div><a href="javascript:void(0);" id="sideCatalogBtn" ></a><div  id="sideCatalogRefreshBtn" ></div></div>');
+    $('.normal-view').before('<div id="TocContainer"><div id="barSplitterContainer"><div id="sideToolbarContainer"></div><div class="splitter"></div></div><a href="javascript:void(0);" id="sideCatalogBtn" ></a><div  id="sideCatalogRefreshBtn" ></div></div>');
+
+    // 通过cookie保存状态
+    let sideToc = getCookie("sideToc");
+    if(sideToc === "0") {
+        $("#barSplitterContainer").addClass("cssVisibility");
+    }
     // 显示隐藏目录
     $('#sideCatalogBtn').on('click', function () {
+        if($("#barSplitterContainer").hasClass("cssVisibility")){
+            setCookie("sideToc", "1", 30);
+        }else {
+            setCookie("sideToc", "0", 30);
+        }
         $("#barSplitterContainer").toggleClass('cssVisibility')
         $(this).toggleClass('sideCatalogBtnDisable')
     });
     $('#sideCatalogRefreshBtn').on('click', function () {
-        let scrollTop = $('#sideToolbar').scrollTop();
         scriptBody()
-        $('#sideToolbar').scrollTop(scrollTop);
         // 太卡了，去掉吧
         // scrollSpy();
     })
 
     let intervalScriptBody = setInterval(intervalBody, 3000);
 
+    // 自动刷新
+    MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
+    let observer;
+
     function intervalBody() {
         if($('.Node-children').length > 1){
             scriptBody();
             clearInterval(intervalScriptBody);
             intervalScriptBody = null;
+            if(!observer) {
+                observer = new MutationObserver(function(mutations, observer) {
+                    if(!intervalScriptBody) {
+                        intervalScriptBody = setInterval(intervalBody, 3000);
+                    }
+                });
+
+                // 定义变化元素
+                observer.observe($('div.header-sync-state.mod-synced')[0], {
+                    subtree: true,
+                    attributes: true
+                });
+            }
         }
     }
 
-    // 自动刷新
-    // MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
-    //
-    // var observer = new MutationObserver(function(mutations, observer) {
-    //     if(!intervalScriptBody) {
-    //         intervalScriptBody = setInterval(intervalBody, 10000);
-    //     }
-    // });
-    //
-    // // 定义变化元素
-    // observer.observe($('div.Document-rootNode')[0], {
-    //     subtree: true,
-    //     attributes: true
-    // });
+    $(window).bind('hashchange', function() {
+        if(!intervalScriptBody) {
+            intervalScriptBody = setInterval(intervalBody, 3000);
+        }
+    });
+
+
 
 });
 
+function setCookie(cname,cvalue,exdays){
+    var d = new Date();
+    d.setTime(d.getTime()+(exdays*24*60*60*1000));
+    var expires = "expires="+d.toGMTString();
+    document.cookie = cname+"="+cvalue+"; "+expires;
+}
+function getCookie(cname){
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i].trim();
+        if (c.indexOf(name)==0) { return c.substring(name.length,c.length); }
+    }
+    return "";
+}
+
 function scriptBody(){
     console.log("dynalist toc");
+    let scrollTop = $('#sideToolbar').scrollTop();
     $('#sideToolbarContainer').empty();
 
     // 需将主体宽度减小
@@ -151,6 +187,8 @@ function scriptBody(){
         $('.DocumentContainer').scrollTop($('.DocumentContainer').scrollTop() + top - 100);
     })
 
+
+    $('#sideToolbar').scrollTop(scrollTop);
 };
 
 function scrollSpy() {
