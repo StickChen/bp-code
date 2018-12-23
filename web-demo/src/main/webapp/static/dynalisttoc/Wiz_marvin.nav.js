@@ -1,6 +1,6 @@
 $(function () {
 
-    $('.normal-view').before('<div id="TocContainer"><div id="barSplitterContainer"><div id="sideToolbarContainer"></div><div class="splitter"></div></div><a href="javascript:void(0);" id="sideCatalogBtn" ></a><div  id="sideCatalogRefreshBtn" ></div></div>');
+    $('.normal-view').before('<div id="TocContainer"><div id="barSplitterContainer"><div id="sideToolbarContainer"></div><div class="splitter"></div></div><div  id="sideCatalogRefreshBtn" ></div><a href="javascript:void(0);" id="sideCatalogBtn" ></a></div>');
 
     // 通过cookie保存状态
     let sideToc = getCookie("sideToc");
