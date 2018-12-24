@@ -177,15 +177,15 @@
 
 #sideCatalogRefreshBtn{
     cursor: pointer;
-    height: 20px;
+    height: 30px;
     width: 20px;
     position: relative;
     margin-top: 130px;
-    background-color: #ddd;
+    background-color: #e4e4e4;
 }
 
 #sideCatalogRefreshBtn:hover {
-    background-color: #f3d4d3;
+    background-color: #f2f9ff;
 }
 
 #sideCatalogBtn {
@@ -193,21 +193,22 @@
     background-size: 20px;
     cursor: pointer;
     display: block;
-    height: 80%;
+    height: 50%;
     position: relative;
     width: 20px;
     margin-top: 10px;
     outline: 0;
-    background-color: #dcecf9;
+    background-color: #e4e4e4;
 }
 
 #sideCatalogBtn:hover {
     /*background: url("http://www.longxuanme.com/resource/image?name=img-20181204152402232.gif") no-repeat scroll -154px 0 transparent*/
+    background-color: #f2f9ff;
 }
 
-.sideCatalogBtnDisable {
+.sideCatalogBtnEnable {
     /*background: url("http://www.longxuanme.com/resource/image?name=img-20181204152402232.gif") no-repeat scroll -104px 0 transparent !important*/
-    background-color: #ddd !important;
+    background-color: #f2f9ff !important;
 }
 
 #sideToolbar-up {

@@ -6,6 +6,8 @@ $(function () {
     let sideToc = getCookie("sideToc");
     if(sideToc === "0") {
         $("#barSplitterContainer").addClass("cssVisibility");
+    }else {
+        $('#sideCatalogBtn').addClass('sideCatalogBtnEnable');
     }
     // 显示隐藏目录
     $('#sideCatalogBtn').on('click', function () {
@@ -15,7 +17,7 @@ $(function () {
             setCookie("sideToc", "0", 30);
         }
         $("#barSplitterContainer").toggleClass('cssVisibility')
-        $(this).toggleClass('sideCatalogBtnDisable')
+        $(this).toggleClass('sideCatalogBtnEnable')
     });
     $('#sideCatalogRefreshBtn').on('click', function () {
         scriptBody()
