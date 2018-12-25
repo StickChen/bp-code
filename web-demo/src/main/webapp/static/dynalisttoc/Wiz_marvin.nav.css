@@ -1,3 +1,15 @@
+.level1{
+    font-size: 15px !important;
+    font-weight: bold !important;
+    color: #000000 !important;
+}
+.level2{
+    font-size: 15px !important;
+    color: #023f73 !important;
+}
+.level3{
+
+}
 #barSplitterContainer{
     width: 280px;
     position: absolute;
@@ -174,13 +186,34 @@
     top: 3px;
     width: 18px
 }
-
+#sideCatalogRefreshFirstBtn{
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    position: relative;
+    margin-top: 100px;
+    background-color: #e4e4e4;
+}
+#sideCatalogRefreshFirstBtn:hover {
+    background-color: #f2f9ff;
+}
+#sideCatalogRefreshSecondBtn{
+    cursor: pointer;
+    height: 25px;
+    width: 20px;
+    position: relative;
+    margin-top: 10px;
+    background-color: #e4e4e4;
+}
+#sideCatalogRefreshSecondBtn:hover {
+    background-color: #f2f9ff;
+}
 #sideCatalogRefreshBtn{
     cursor: pointer;
     height: 30px;
     width: 20px;
     position: relative;
-    margin-top: 130px;
+    margin-top: 10px;
     background-color: #e4e4e4;
 }
 

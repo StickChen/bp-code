@@ -1,6 +1,6 @@
 $(function () {
 
-    $('.normal-view').before('<div id="TocContainer"><div id="barSplitterContainer"><div id="sideToolbarContainer"></div><div class="splitter"></div></div><div  id="sideCatalogRefreshBtn" ></div><a href="javascript:void(0);" id="sideCatalogBtn" ></a></div>');
+    $('.normal-view').before('<div id="TocContainer"><div id="barSplitterContainer"><div id="sideToolbarContainer"></div><div class="splitter"></div></div><div id="sideCatalogRefreshFirstBtn""></div><div id="sideCatalogRefreshSecondBtn""></div><div id="sideCatalogRefreshBtn" ></div><a href="javascript:void(0);" id="sideCatalogBtn" ></a></div>');
 
     // 通过cookie保存状态
     let sideToc = getCookie("sideToc");
@@ -19,7 +19,16 @@ $(function () {
         $("#barSplitterContainer").toggleClass('cssVisibility')
         $(this).toggleClass('sideCatalogBtnEnable')
     });
+    $('#sideCatalogRefreshFirstBtn').on('click', function () {
+        setCookie("tocLevel", "1", 30);
+        scriptBody()
+    })
+    $('#sideCatalogRefreshSecondBtn').on('click', function () {
+        setCookie("tocLevel", "2", 30);
+        scriptBody()
+    })
     $('#sideCatalogRefreshBtn').on('click', function () {
+        setCookie("tocLevel", "3", 30);
         scriptBody()
         // 太卡了，去掉吧
         // scrollSpy();
@@ -79,6 +88,11 @@ function getCookie(cname){
 }
 
 function scriptBody(){
+    let tocLevel = getCookie("tocLevel");
+    if(tocLevel === ""){
+        tocLevel = "3";
+    }
+    let iTocLevel = parseInt(tocLevel);
     console.log("dynalist toc");
     let scrollTop = $('#sideToolbar').scrollTop();
     $('#sideToolbarContainer').empty();
@@ -88,18 +102,12 @@ function scriptBody(){
     // $('.DocumentContainer').css({width: $('.DocumentContainer').width() - 200});
 
     var body = $('body'),
-        sideToolbar = 'sideToolbar',
-        sideCatalog = 'sideCatalog',
         catalog = 'sideCatalog-catalog',
-        catalogBtn = 'sideCatalogBtn',
-        sideToolbarUp = 'sideToolbar-up',
         i = '<div id="sideToolbar" style="display:block;">\<div class="sideCatalogBg" id="sideCatalog">\<div id="sideCatalog-catalog">\<ul class="nav"style="zoom:1">\</ul>\</div>\</div>\</div>',
         ulHtml = '',
-        k = 0,
         l1 = 0,
         l2 = 0,
-        l3 = 0,
-        headers;
+        l3 = 0;
     if (body.length === 0) {
         return
     }
@@ -118,32 +126,34 @@ function scriptBody(){
             header1.attr('id', 'autoid-' + l1 + '-' + l2 + '-' + l3);
             // if (text1.length > 14) text1 = text1.substr(0, 12) + "...";
 
-            ulHtml += '<li><span>' + l1 + '&nbsp&nbsp</span><a class="head_a" id="a_' + header1.attr('id') + '" href="#' + header1.attr('id') + '" title="' + title1 + '">' + text1 + '</a><span class="sideCatalog-dot"></span></li>';
-
-            $(headerContainer1.children()[1]).children()
-                .each(function (i) {
-                    l2++;
-                    l3=0;
-                    var headerContainer2 = $(this).children();
-                    var header2 = $(headerContainer2.find(titleSelector)[0]);
-                    var title2 = header2.text();
-                    var text2 = header2.text();
-                    header2.attr('id', 'autoid-' + l1 + '-' + l2 + '-' + l3);
-                    // if (text2.length > 14) text2 = text2.substr(0, 12) + "...";
-                    ulHtml += '<li class="h2Offset"><span>' + l1 + '.' + l2 + '&nbsp&nbsp</span><a class="head_a" id="a_' + header2.attr('id') + '" href="#' + header2.attr('id') + '" title="' + title2 + '">' + text2 + '</a></li>';
-
-                    $(headerContainer2.children()[1]).children()
-                        .each(function (i) {
-                            l3++
-                            var headerContainer3 = $(this).children();
-                            var header3 = $(headerContainer3.find(titleSelector)[0]);
-                            var title3 = header3.text();
-                            var text3 = header3.text();
-                            header3.attr('id', 'autoid-' + l1 + '-' + l2 + '-' + l3);
-                            // if (text3.length > 14) text3 = text3.substr(0, 12) + "...";
-                            ulHtml += '<li class="h3Offset"><span>' + l1 + '.' + l2 + '.' + l3 + '&nbsp&nbsp</span><a class="head_a" id="a_' + header3.attr('id') + '" href="#' + header3.attr('id') + '" title="' + title3 + '">' + text3 + '</a></li>';
-                        });
-                });
+            ulHtml += '<li><span>' + l1 + '&nbsp&nbsp</span><a class="head_a level1" id="a_' + header1.attr('id') + '" href="#' + header1.attr('id') + '" title="' + title1 + '">' + text1 + '</a><span class="sideCatalog-dot"></span></li>';
+            if(iTocLevel >= 2) {
+                $(headerContainer1.children()[1]).children()
+                    .each(function (i) {
+                        l2++;
+                        l3 = 0;
+                        var headerContainer2 = $(this).children();
+                        var header2 = $(headerContainer2.find(titleSelector)[0]);
+                        var title2 = header2.text();
+                        var text2 = header2.text();
+                        header2.attr('id', 'autoid-' + l1 + '-' + l2 + '-' + l3);
+                        // if (text2.length > 14) text2 = text2.substr(0, 12) + "...";
+                        ulHtml += '<li class="h2Offset"><span>' + l1 + '.' + l2 + '&nbsp&nbsp</span><a class="head_a level2" id="a_' + header2.attr('id') + '" href="#' + header2.attr('id') + '" title="' + title2 + '">' + text2 + '</a></li>';
+                        if (iTocLevel >= 3) {
+                            $(headerContainer2.children()[1]).children()
+                                .each(function (i) {
+                                    l3++
+                                    var headerContainer3 = $(this).children();
+                                    var header3 = $(headerContainer3.find(titleSelector)[0]);
+                                    var title3 = header3.text();
+                                    var text3 = header3.text();
+                                    header3.attr('id', 'autoid-' + l1 + '-' + l2 + '-' + l3);
+                                    // if (text3.length > 14) text3 = text3.substr(0, 12) + "...";
+                                    ulHtml += '<li class="h3Offset"><span>' + l1 + '.' + l2 + '.' + l3 + '&nbsp&nbsp</span><a class="head_a level3" id="a_' + header3.attr('id') + '" href="#' + header3.attr('id') + '" title="' + title3 + '">' + text3 + '</a></li>';
+                                });
+                        }
+                    });
+            }
         });
 
 
