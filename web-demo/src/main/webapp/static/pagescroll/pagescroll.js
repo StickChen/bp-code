@@ -1,5 +1,5 @@
 $(function () {
-    let clientHeight = document.body.clientHeight/2;
+    let clientHeight = $(window).height()/2;
     $('body').append('<div id="pageScroll"><div id="pageUp"></div><div id="pageDown"></div></div><div id="pageScrollSwitcher"></div>')
     $('#pageScroll').css({top: clientHeight});
 
@@ -8,10 +8,10 @@ $(function () {
         container = $(window);
     }
     $('#pageDown').on('click', function () {
-        container.scrollTop(container.scrollTop() + container.innerHeight() * .9);
+        container.scrollTop(container.scrollTop() + container.height() * .9);
     })
     $('#pageUp').on('click', function () {
-        container.scrollTop(container.scrollTop() - container.innerHeight() * .9);
+        container.scrollTop(container.scrollTop() - container.height() * .9);
     })
     $('#pageScrollSwitcher').on('click', function () {
         if($("#pageScroll").hasClass("cssVisibility")){
