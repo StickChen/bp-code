@@ -21,15 +21,15 @@ $(function () {
     });
     $('#sideCatalogRefreshFirstBtn').on('click', function () {
         setCookie("tocLevel", "1", 30);
-        scriptBody()
+        scriptBody("1")
     })
     $('#sideCatalogRefreshSecondBtn').on('click', function () {
         setCookie("tocLevel", "2", 30);
-        scriptBody()
+        scriptBody("2")
     })
     $('#sideCatalogRefreshBtn').on('click', function () {
         setCookie("tocLevel", "3", 30);
-        scriptBody()
+        scriptBody("3")
         // 太卡了，去掉吧
         // scrollSpy();
     })
@@ -74,8 +74,10 @@ $(function () {
 function setCookie(cname,cvalue,exdays){
     var d = new Date();
     d.setTime(d.getTime()+(exdays*24*60*60*1000));
-    var expires = "expires="+d.toGMTString();
-    document.cookie = cname+"="+cvalue+"; "+expires;
+    var expires = "expires=" + d.toLocaleDateString();
+    let cookie = cname+"="+cvalue+"; " + expires + "; path=/";
+    console.log(cookie);
+    document.cookie = cookie;
 }
 function getCookie(cname){
     var name = cname + "=";
@@ -87,8 +89,10 @@ function getCookie(cname){
     return "";
 }
 
-function scriptBody(){
-    let tocLevel = getCookie("tocLevel");
+function scriptBody(tocLevel){
+    if(!tocLevel){
+        tocLevel = getCookie("tocLevel");
+    }
     if(tocLevel === ""){
         tocLevel = "3";
     }
