@@ -10,12 +10,14 @@
     margin-bottom: 20px;
     width:100%;
     background-color: #bfbfbf42;
+    cursor: pointer;
 }
 #pageDown{
     border-radius: 50%;
     height: 50px;
     width:100%;
     background-color: #bfbfbf42;
+    cursor: pointer;
 }
 .cssVisibility{
     display:none;
@@ -31,4 +33,5 @@
     height: 30px;
     background-color: #dddddd;
     z-index: 102;
+    cursor: pointer;
 }
