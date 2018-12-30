@@ -1,5 +1,5 @@
 $(function () {
-    let clientHeight = $(window).height()/2;
+    let clientHeight = document.body.clientWidth/2;
     $('body').append('<div id="pageScroll"><div id="pageUp"></div><div id="pageDown"></div></div><div id="pageScrollSwitcher"></div>')
     $('#pageScroll').css({top: clientHeight});
 
