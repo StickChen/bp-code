@@ -34,6 +34,25 @@ $(function () {
         // scrollSpy();
     })
 
+    // 反向定位
+    $('#sideLocateBtn').on('click', function (e) {
+        $(allTitleSelector).each(function (i) {
+            let b = true;
+            let $this = $(this);
+            if($this.offset().top > 0){
+                let idStr = $this.attr('id');
+                if(idStr) {
+                    let $sideOl = $('#a_' + idStr);
+                    if($sideOl) {
+                        let top = $sideOl.offset().top;
+                        $('#barSplitterContainer').scrollTop($('#barSplitterContainer').scrollTop() + top - 50);
+                        return false;
+                    }
+                }
+            }
+        })
+    });
+
     let intervalScriptBody = setInterval(intervalBody, 3000);
 
     // 自动刷新
@@ -89,6 +108,8 @@ function getCookie(cname){
     return "";
 }
 
+let allTitleSelector = 'div.Node-self > div.node-line.Node-contentContainer > div.Node-renderedContent.node-line > span';
+
 function scriptBody(tocLevel){
     if(!tocLevel){
         tocLevel = getCookie("tocLevel");
@@ -117,7 +138,6 @@ function scriptBody(tocLevel){
     }
     $('#sideToolbarContainer').append(i);
     let lv1Selector = 'div.Document-rootNode > div > div.Node-children > div.Node-outer';
-    let allTitleSelector = 'div.Node-self > div.node-line.Node-contentContainer > div.Node-renderedContent.node-line > span';
     let titleSelector = '> ' + allTitleSelector;
     body.find(lv1Selector)
         .each(function (i) {
@@ -207,23 +227,6 @@ function scriptBody(tocLevel){
         // window.location.href = window.location.href + aHref;
         $('.DocumentContainer').scrollTop($('.DocumentContainer').scrollTop() + top - 100);
     })
-    // 反向定位
-    $('#sideLocateBtn').on('click', function (e) {
-        $(allTitleSelector).each(function (i) {
-            let $this = $(this);
-            if($this.offset().top > 0){
-                let idStr = $this.attr('id');
-                if(idStr) {
-                    let $sideOl = $('#a_' + idStr);
-                    if($sideOl) {
-                        let top = $sideOl.offset().top;
-                        $('#sideToolbar').scrollTop($('#sideToolbar').scrollTop() + top - 50);
-                        return false;
-                    }
-                }
-            }
-        })
-    });
 
     $('#sideToolbar').scrollTop(scrollTop);
 };
