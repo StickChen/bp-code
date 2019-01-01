@@ -1,6 +1,6 @@
 $(function () {
 
-    $('.normal-view').before('<div id="TocContainer"><div id="barSplitterContainer"><div id="sideToolbarContainer"></div><div class="splitter"></div></div><div id="sideCatalogRefreshFirstBtn""></div><div id="sideCatalogRefreshSecondBtn""></div><div id="sideCatalogRefreshBtn" ></div><a href="javascript:void(0);" id="sideCatalogBtn" ></a></div>');
+    $('.normal-view').before('<div id="TocContainer"><div id="barSplitterContainer"><div id="sideToolbarContainer"></div><div class="splitter"></div></div><div id="sideCatalogRefreshFirstBtn""></div><div id="sideCatalogRefreshSecondBtn""></div><div id="sideCatalogRefreshBtn" ></div><div id="sideLocateBtn" ></div><a href="javascript:void(0);" id="sideCatalogBtn" ></a></div>');
 
     // 通过cookie保存状态
     let sideToc = getCookie("sideToc");
@@ -117,43 +117,44 @@ function scriptBody(tocLevel){
     }
     $('#sideToolbarContainer').append(i);
     let lv1Selector = 'div.Document-rootNode > div > div.Node-children > div.Node-outer';
-    let titleSelector = '> div.Node-self > div.node-line.Node-contentContainer > div.Node-renderedContent.node-line > span';
+    let allTitleSelector = 'div.Node-self > div.node-line.Node-contentContainer > div.Node-renderedContent.node-line > span';
+    let titleSelector = '> ' + allTitleSelector;
     body.find(lv1Selector)
         .each(function (i) {
-            l1++;
-            l2=0;
             var headerContainer1 = $(this).children();
             var header1 = $(headerContainer1.find(titleSelector)[0]);
             var title1 = htmlEncode(header1.text());
             var text1 = htmlEncode(header1.text());
-            header1.attr('id', 'autoid-' + l1 + '-' + l2 + '-' + l3);
-            // if (text1.length > 14) text1 = text1.substr(0, 12) + "...";
             if((title1 && title1.trim().length > 0) || $(headerContainer1.children()[1]).children().length > 0){
+                l1++;
+                l2=0;
+                header1.attr('id', 'autoid-' + l1 + '-' + l2 + '-' + l3);
+                // if (text1.length > 14) text1 = text1.substr(0, 12) + "...";
                 ulHtml += '<li><span>' + l1 + '&nbsp&nbsp</span><a class="head_a level1" id="a_' + header1.attr('id') + '" href="#' + header1.attr('id') + '" title="' + title1 + '">' + text1 + '</a><span class="sideCatalog-dot"></span></li>';
             }
             if(iTocLevel >= 2) {
                 $(headerContainer1.children()[1]).children()
                     .each(function (i) {
-                        l2++;
-                        l3 = 0;
                         var headerContainer2 = $(this).children();
                         var header2 = $(headerContainer2.find(titleSelector)[0]);
                         var title2 = htmlEncode(header2.text());
                         var text2 = htmlEncode(header2.text());
-                        header2.attr('id', 'autoid-' + l1 + '-' + l2 + '-' + l3);
                         if((title2 && title2.trim().length > 0) || $(headerContainer2.children()[1]).children().length > 0){
+                            l2++;
+                            l3 = 0;
+                            header2.attr('id', 'autoid-' + l1 + '-' + l2 + '-' + l3);
                             // if (text2.length > 14) text2 = text2.substr(0, 12) + "...";
                             ulHtml += '<li class="h2Offset"><span>' + l1 + '.' + l2 + '&nbsp&nbsp</span><a class="head_a level2" id="a_' + header2.attr('id') + '" href="#' + header2.attr('id') + '" title="' + title2 + '">' + text2 + '</a></li>';
                         }
                         if (iTocLevel >= 3) {
                             $(headerContainer2.children()[1]).children()
                                 .each(function (i) {
-                                    l3++
                                     var headerContainer3 = $(this).children();
                                     var header3 = $(headerContainer3.find(titleSelector)[0]);
                                     var title3 = htmlEncode(header3.text());
                                     var text3 = htmlEncode(header3.text());
                                     if((title3 && title3.trim().length > 0) || $(headerContainer3.children()[1]).children().length > 0){
+                                        l3++
                                         header3.attr('id', 'autoid-' + l1 + '-' + l2 + '-' + l3);
                                         // if (text3.length > 14) text3 = text3.substr(0, 12) + "...";
                                         ulHtml += '<li class="h3Offset"><span>' + l1 + '.' + l2 + '.' + l3 + '&nbsp&nbsp</span><a class="head_a level3" id="a_' + header3.attr('id') + '" href="#' + header3.attr('id') + '" title="' + title3 + '">' + text3 + '</a></li>';
@@ -206,7 +207,23 @@ function scriptBody(tocLevel){
         // window.location.href = window.location.href + aHref;
         $('.DocumentContainer').scrollTop($('.DocumentContainer').scrollTop() + top - 100);
     })
-
+    // 反向定位
+    $('#sideLocateBtn').on('click', function (e) {
+        $(allTitleSelector).each(function (i) {
+            let $this = $(this);
+            if($this.offset().top > 0){
+                let idStr = $this.attr('id');
+                if(idStr) {
+                    let $sideOl = $('#a_' + idStr);
+                    if($sideOl) {
+                        let top = $sideOl.offset().top;
+                        $('#sideToolbar').scrollTop($('#sideToolbar').scrollTop() + top - 50);
+                        return false;
+                    }
+                }
+            }
+        })
+    });
 
     $('#sideToolbar').scrollTop(scrollTop);
 };

@@ -48,11 +48,11 @@
     bottom: -12px;
     right: 25px;
     height: 440px;*/
-    min-width: 250px;
+    /*min-width: 250px;*/
     margin-left: 20px;
     position: absolute;
     border: 1px #dddddd;
-    overflow: auto;
+    /*overflow: auto;*/
     background-color: #fff;
     height: 100%;
 }
@@ -218,6 +218,18 @@
 }
 
 #sideCatalogRefreshBtn:hover {
+    background-color: #f2f9ff;
+}
+
+#sideLocateBtn{
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    position: relative;
+    margin-top: 10px;
+    background-color: #e4e4e4;
+}
+#sideLocateBtn:hover{
     background-color: #f2f9ff;
 }
 
