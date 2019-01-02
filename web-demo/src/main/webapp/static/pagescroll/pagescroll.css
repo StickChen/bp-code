@@ -3,6 +3,7 @@
     right: 0;
     height: 120px;
     width:50px;
+    z-index: 110;
 }
 #pageUp{
     border-radius: 50%;
@@ -27,8 +28,18 @@
 }
 #pageScrollSwitcher{
     position: fixed;
+    right: 0;
+    bottom: 20px;
+    width:20px;
+    height: 30px;
+    background-color: #dddddd;
+    z-index: 102;
+    cursor: pointer;
+}
+#pageScrollSwitcherLeft{
+    position: fixed;
     left: 0;
-    bottom: 10px;
+    bottom: 20px;
     width:20px;
     height: 30px;
     background-color: #dddddd;
