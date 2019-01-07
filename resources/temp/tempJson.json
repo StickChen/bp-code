@@ -1,0 +1,21 @@
+{
+  "[]":{
+    "page":0,
+    "count":2,
+    "Moment":{
+      "content$":"%a%"
+    },
+    "Comment[]":{
+      "Comment":{
+        "momentId@":{
+          "[]":{
+            "Moment":{
+              "content$":"%a%",
+              "@column":"id"
+            }
+          }
+        }
+      }
+    }
+  }
+}

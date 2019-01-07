@@ -80,3 +80,7 @@ paxos-ref/target/
 /daily-code.iml
 /paxos-demo/target/
 /web-demo/web-demo.iml
+src/main/resources/lib/
+src/main/resources/temp/
+src/test/java/com/shallop/bpc/collection/project/
+.idea/sqldialects.xml

@@ -1,0 +1,14 @@
+{
+  "Comment[]":{
+    "Comment":{
+      "momentId@":{
+        "[]":{
+          "Moment":{
+            "content$":"%a%",
+            "@column":"id"
+          }
+        }
+      }
+    }
+  }
+}
