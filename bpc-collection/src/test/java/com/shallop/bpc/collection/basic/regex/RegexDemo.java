@@ -16,6 +16,15 @@ import static com.shallop.bpc.collection.utils.Printer.pt;
 public class RegexDemo {
 
 	@Test
+	public void testEscape(){
+
+		Pattern compile = Pattern.compile("^[0-9%!=<>,\"' +()-]+$");
+		boolean matches = compile.matcher((String) ">='2019-01-18T03:27:24.419Z'").matches();
+		pt(matches);
+
+	}
+
+	@Test
 	public void testSpilt(){
 		String s = "H|201710310231093440992|XXXX00720180709ClaimConfirm.txt";
 		String[] split = s.split("\\|");
