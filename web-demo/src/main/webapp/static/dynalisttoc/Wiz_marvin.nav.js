@@ -1,3 +1,4 @@
+let tocLevel = '3';
 $(function () {
 
     $('.normal-view').before('<div id="TocContainer"><div id="barSplitterContainer"><div id="sideToolbarContainer"></div><div class="splitter"></div></div><div id="sideCatalogRefreshFirstBtn""></div><div id="sideCatalogRefreshSecondBtn""></div><div id="sideCatalogRefreshBtn" ></div><div id="sideLocateBtn" ></div><a href="javascript:void(0);" id="sideCatalogBtn" ></a></div>');
@@ -20,15 +21,15 @@ $(function () {
         $(this).toggleClass('sideCatalogBtnEnable')
     });
     $('#sideCatalogRefreshFirstBtn').on('click', function () {
-        setCookie("tocLevel", "1", 30);
+        tocLevel = "1";
         scriptBody("1")
     })
     $('#sideCatalogRefreshSecondBtn').on('click', function () {
-        setCookie("tocLevel", "2", 30);
+        tocLevel = "2";
         scriptBody("2")
     })
     $('#sideCatalogRefreshBtn').on('click', function () {
-        setCookie("tocLevel", "3", 30);
+        tocLevel = "3";
         scriptBody("3")
         // 太卡了，去掉吧
         // scrollSpy();
@@ -115,14 +116,14 @@ let titleSelectorPre = 'div.Node-self > div.node-line.Node-contentContainer';
 let allTitleSelector = titleSelectorPre + ' > div.Node-content';
 let allTitleRenderedSelector = titleSelectorPre + ' > div.Node-renderedContent.node-line';
 
-function scriptBody(tocLevel){
-    if(!tocLevel){
-        tocLevel = getCookie("tocLevel");
+function scriptBody(level){
+    if(!level){
+        level = tocLevel;
     }
-    if(tocLevel === ""){
-        tocLevel = "3";
+    if(level === ""){
+        level = "3";
     }
-    let iTocLevel = parseInt(tocLevel);
+    let iTocLevel = parseInt(level);
     console.log("dynalist toc");
     let scrollTop = $('#sideToolbar').scrollTop();
     $('#sideToolbarContainer').empty();
