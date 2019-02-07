@@ -36,7 +36,7 @@ $(function () {
 
     // 反向定位
     $('#sideLocateBtn').on('click', function (e) {
-        $(allTitleSelector).each(function (i) {
+        $(allTitleRenderedSelector).each(function (i) {
             let b = true;
             let $this = $(this);
             if($this.offset().top > 0){
@@ -44,6 +44,8 @@ $(function () {
                 if(idStr) {
                     let $sideOl = $('#a_' + idStr);
                     if($sideOl) {
+                        // 加亮
+                        $sideOl.addClass("currentLocation");
                         let top = $sideOl.offset().top;
                         $('#barSplitterContainer').scrollTop($('#barSplitterContainer').scrollTop() + top - 50);
                         return false;
@@ -108,7 +110,10 @@ function getCookie(cname){
     return "";
 }
 
-let allTitleSelector = 'div.Node-self > div.node-line.Node-contentContainer > div.Node-renderedContent.node-line > span';
+// Node-content 是display:none，锚点需要重新定位
+let titleSelectorPre = 'div.Node-self > div.node-line.Node-contentContainer';
+let allTitleSelector = titleSelectorPre + ' > div.Node-content';
+let allTitleRenderedSelector = titleSelectorPre + ' > div.Node-renderedContent.node-line';
 
 function scriptBody(tocLevel){
     if(!tocLevel){
@@ -148,9 +153,10 @@ function scriptBody(tocLevel){
             if((title1 && title1.trim().length > 0) || $(headerContainer1.children()[1]).children().length > 0){
                 l1++;
                 l2=0;
-                header1.attr('id', 'autoid-' + l1 + '-' + l2 + '-' + l3);
+                let headId = 'autoid-' + l1 + '-' + l2 + '-' + l3;
+                $(header1.next('.Node-renderedContent')[0]).attr('id', headId);
                 // if (text1.length > 14) text1 = text1.substr(0, 12) + "...";
-                ulHtml += '<li><span>' + l1 + '&nbsp&nbsp</span><a class="head_a level1" id="a_' + header1.attr('id') + '" href="#' + header1.attr('id') + '" title="' + title1 + '">' + text1 + '</a><span class="sideCatalog-dot"></span></li>';
+                ulHtml += '<li><span>' + l1 + '&nbsp&nbsp</span><a class="head_a level1" id="a_' + headId + '" href="#' + headId + '" title="' + title1 + '">' + text1 + '</a><span class="sideCatalog-dot"></span></li>';
             }
             if(iTocLevel >= 2) {
                 $(headerContainer1.children()[1]).children()
@@ -162,9 +168,10 @@ function scriptBody(tocLevel){
                         if((title2 && title2.trim().length > 0) || $(headerContainer2.children()[1]).children().length > 0){
                             l2++;
                             l3 = 0;
-                            header2.attr('id', 'autoid-' + l1 + '-' + l2 + '-' + l3);
+                            let headId = 'autoid-' + l1 + '-' + l2 + '-' + l3;
+                            $(header2.next('.Node-renderedContent')[0]).attr('id', headId);
                             // if (text2.length > 14) text2 = text2.substr(0, 12) + "...";
-                            ulHtml += '<li class="h2Offset"><span>' + l1 + '.' + l2 + '&nbsp&nbsp</span><a class="head_a level2" id="a_' + header2.attr('id') + '" href="#' + header2.attr('id') + '" title="' + title2 + '">' + text2 + '</a></li>';
+                            ulHtml += '<li class="h2Offset"><span>' + l1 + '.' + l2 + '&nbsp&nbsp</span><a class="head_a level2" id="a_' + headId + '" href="#' + headId + '" title="' + title2 + '">' + text2 + '</a></li>';
                         }
                         if (iTocLevel >= 3) {
                             $(headerContainer2.children()[1]).children()
@@ -175,9 +182,10 @@ function scriptBody(tocLevel){
                                     var text3 = htmlEncode(header3.text());
                                     if((title3 && title3.trim().length > 0) || $(headerContainer3.children()[1]).children().length > 0){
                                         l3++
-                                        header3.attr('id', 'autoid-' + l1 + '-' + l2 + '-' + l3);
+                                        let headId = 'autoid-' + l1 + '-' + l2 + '-' + l3;
+                                        $(header3.next('.Node-renderedContent')[0]).attr('id', headId);
                                         // if (text3.length > 14) text3 = text3.substr(0, 12) + "...";
-                                        ulHtml += '<li class="h3Offset"><span>' + l1 + '.' + l2 + '.' + l3 + '&nbsp&nbsp</span><a class="head_a level3" id="a_' + header3.attr('id') + '" href="#' + header3.attr('id') + '" title="' + title3 + '">' + text3 + '</a></li>';
+                                        ulHtml += '<li class="h3Offset"><span>' + l1 + '.' + l2 + '.' + l3 + '&nbsp&nbsp</span><a class="head_a level3" id="a_' + headId + '" href="#' + headId + '" title="' + title3 + '">' + text3 + '</a></li>';
                                     }
                                 });
                         }

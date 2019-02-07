@@ -1,4 +1,4 @@
-package com.shallop.bpc.collection;
+package com.shallop.bpc.collection.project.gnote;
 
 import java.util.Date;
 

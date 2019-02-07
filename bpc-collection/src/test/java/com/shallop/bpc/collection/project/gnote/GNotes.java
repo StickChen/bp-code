@@ -1,15 +1,16 @@
-package com.shallop.bpc.collection;
+package com.shallop.bpc.collection.project.gnote;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
+import org.apache.commons.io.FileUtils;
+import org.junit.Test;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.shallop.bpc.collection.utils.DateUtil;
-import org.apache.commons.io.FileUtils;
-import org.junit.Test;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
 
 /**
  * 把笔记导入到Wiz里面整理
