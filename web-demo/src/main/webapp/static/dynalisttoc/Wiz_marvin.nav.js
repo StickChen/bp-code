@@ -157,7 +157,7 @@ function scriptBody(level){
                 let headId = 'autoid-' + l1 + '-' + l2 + '-' + l3;
                 $(header1.next('.Node-renderedContent')[0]).attr('id', headId);
                 // if (text1.length > 14) text1 = text1.substr(0, 12) + "...";
-                ulHtml += '<li><span>' + l1 + '&nbsp&nbsp</span><a class="head_a level1" id="a_' + headId + '" href="#' + headId + '" title="' + title1 + '">' + text1 + '</a><span class="sideCatalog-dot"></span></li>';
+                ulHtml += '<li class="h1Offset"><span>' + l1 + '&nbsp&nbsp</span><a class="head_a level1" id="a_' + headId + '" href="#' + headId + '" title="' + title1 + '">' + text1 + '</a><span class="sideCatalog-dot"></span></li>';
             }
             if(iTocLevel >= 2) {
                 $(headerContainer1.children()[1]).children()
