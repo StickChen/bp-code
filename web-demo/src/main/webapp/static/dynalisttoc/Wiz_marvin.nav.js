@@ -48,7 +48,7 @@ $(function () {
                         // 加亮
                         $sideOl.addClass("currentLocation");
                         let top = $sideOl.offset().top;
-                        $('#barSplitterContainer').scrollTop($('#barSplitterContainer').scrollTop() + top - 50);
+                        $('#barSplitterContainer').scrollTop($('#barSplitterContainer').scrollTop() + top - 100);
                         return false;
                     }
                 }
