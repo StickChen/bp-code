@@ -65,6 +65,7 @@ $(function () {
     function intervalBody() {
         if($('.Node-children').length > 1){
             scriptBody();
+            scrollHistory();
             clearInterval(intervalScriptBody);
             intervalScriptBody = null;
             if(!observer) {
@@ -232,8 +233,8 @@ function scriptBody(level){
     $('.head_a').on('click', function (e) {
         e.preventDefault();
         let aHref = $(this).attr('href');
-        let top = $(aHref).offset().top;
         // window.location.href = window.location.href + aHref;
+        let top = $(aHref).offset().top;
         $('.DocumentContainer').scrollTop($('.DocumentContainer').scrollTop() + top - 100);
     })
 
@@ -283,6 +284,40 @@ function scrollSpy() {
         });
     });
 }
+
+var ls = window.localStorage;
+let href = window.location.href;
+let key = 'sTop-' + href;
+let initScroll = true;
+let item = ls.getItem(key);
+function scrollHistory() {
+    // 页面每次加载的时候获取本地存储里面的值
+    if(initScroll === false) {
+        return;
+    }
+    if (item) {
+        console.info(item);
+        var oldStop = item;
+        // 获取到的值来设置页面滚动条的位置
+        $('.DocumentContainer').scrollTop(oldStop);
+        window.setTimeout(function () {
+            $('#sideLocateBtn').trigger('click');
+        }, 500);
+
+    }
+    initScroll = false;
+}
+
+
+
+// 监听页面滚动条的状态（是否滚动）
+$('.DocumentContainer').scroll(function() {
+    // 滚动时获取页面滚动条的位置
+    var sTop = $('.DocumentContainer').scrollTop();
+    // 滚动条的位置保存到本地存储里面
+    ls.setItem(key, sTop);
+});
+
 
 function htmlEncode(str) {
     var div = document.createElement("div");

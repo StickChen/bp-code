@@ -23,6 +23,7 @@
     border: 1px #dddddd;
     overflow: auto;
     height: 100%;
+    padding-top: 26px;
 }
 .splitter{
     position: fixed;
@@ -41,7 +42,7 @@
     position: absolute;
     height: 100%;
     width:0;
-    margin-top: 26px;
+    /*margin-top: 26px;*/
 }
 
 #sideToolbarContainer{
