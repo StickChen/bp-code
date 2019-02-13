@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<opml version="2.0">
+    <head>
+        <title>中心主题</title>
+        <owername>chenxuanlong</owername>
+        <producer>XMind</producer>
+        <xmind-version>3.7.8</xmind-version>
+    </head>
+    <body>
+        <outline text="中心主题">
+            <outline text="分支主题 1">
+                <outline text="好玩">
+                    <outline text="发公文">
+                        <outline text="jog和我二哥和我">
+                            <outline text="发公文和公文">
+                                <outline text="更好玩纪工委"/>
+                            </outline>
+                        </outline>
+                    </outline>
+                </outline>
+                <outline text="给问问"/>
+                <outline text="交给我了教给我"/>
+            </outline>
+            <outline text="分支主题 2"/>
+            <outline text="分支主题 3"/>
+        </outline>
+    </body>
+</opml>

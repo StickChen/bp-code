@@ -1,0 +1,7 @@
+#dynalistScroll{
+    position: fixed;
+    left: 0;
+    height: 100%;
+    width: 20px;
+    padding-top: 20px;
+}
