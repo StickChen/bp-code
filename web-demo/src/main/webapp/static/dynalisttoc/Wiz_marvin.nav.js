@@ -62,10 +62,11 @@ $(function () {
     MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
     let observer;
 
+
     function intervalBody() {
         if($('.Node-children').length > 1){
             scriptBody();
-            scrollHistory();
+            intervalScrollHistory = setInterval(scrollHistory, 2000);
             clearInterval(intervalScriptBody);
             intervalScriptBody = null;
             if(!observer) {
@@ -290,20 +291,29 @@ let href = window.location.href;
 let key = 'sTop-' + href;
 let initScroll = true;
 let item = ls.getItem(key);
+let lastHeight = 0;
+let nowHeight = 0;
+let intervalScrollHistory;
 function scrollHistory() {
     // 页面每次加载的时候获取本地存储里面的值
     if(initScroll === false) {
         return;
     }
+    nowHeight = $('.DocumentContainer')[0].scrollHeight;
+    console.info("nowHeight:" + nowHeight);
+    if(lastHeight === 0 || lastHeight !== nowHeight) {
+        lastHeight = $('.DocumentContainer')[0].scrollHeight;
+        console.info("lastHeight:" + lastHeight);
+        return;
+    }
     if (item) {
-        console.info(item);
-        var oldStop = item;
+        console.info("target:" + item);
         // 获取到的值来设置页面滚动条的位置
-        $('.DocumentContainer').scrollTop(oldStop);
+        $('.DocumentContainer').scrollTop(item);
         window.setTimeout(function () {
             $('#sideLocateBtn').trigger('click');
         }, 500);
-
+        clearInterval(intervalScrollHistory);
     }
     initScroll = false;
 }
