@@ -318,7 +318,6 @@ function scrollHistory() {
             // 滚动时获取页面滚动条的位置
             var sTop = $('.DocumentContainer').scrollTop();
             // 滚动条的位置保存到本地存储里面
-            console.info("store:" + sTop);
             ls.setItem(key, sTop);
         });
         clearInterval(intervalScrollHistory);
