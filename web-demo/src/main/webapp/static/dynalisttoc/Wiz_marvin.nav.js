@@ -315,16 +315,15 @@ function scrollHistory() {
         }, 500);
         clearInterval(intervalScrollHistory);
     }
-    // 监听页面滚动条的状态（是否滚动）
-    $('.DocumentContainer').scroll(function() {
-        // 滚动时获取页面滚动条的位置
-        var sTop = $('.DocumentContainer').scrollTop();
-        // 滚动条的位置保存到本地存储里面
-        ls.setItem(key, sTop);
-    });
     initScroll = false;
 }
-
+// 监听页面滚动条的状态（是否滚动）
+$('.DocumentContainer').scroll(function() {
+    // 滚动时获取页面滚动条的位置
+    var sTop = $('.DocumentContainer').scrollTop();
+    // 滚动条的位置保存到本地存储里面
+    ls.setItem(key, sTop);
+});
 
 function htmlEncode(str) {
     var div = document.createElement("div");
