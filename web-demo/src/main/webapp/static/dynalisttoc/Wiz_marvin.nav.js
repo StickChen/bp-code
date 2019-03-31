@@ -153,7 +153,7 @@ function scriptBody(level){
             var header1 = $(headerContainer1.find(titleSelector)[0]);
             var title1 = htmlEncode(header1.text());
             var text1 = htmlEncode(header1.text());
-            if((title1 && title1.trim().length > 0) || $(headerContainer1.children()[1]).children().length > 0){
+            if((title1 && title1.trim().length > 0)/* || $(headerContainer1.children()[1]).children().length > 0*/){
                 l1++;
                 l2=0;
                 let headId = 'autoid-' + l1 + '-' + l2 + '-' + l3;
@@ -168,7 +168,7 @@ function scriptBody(level){
                         var header2 = $(headerContainer2.find(titleSelector)[0]);
                         var title2 = htmlEncode(header2.text());
                         var text2 = htmlEncode(header2.text());
-                        if((title2 && title2.trim().length > 0) || $(headerContainer2.children()[1]).children().length > 0){
+                        if((title2 && title2.trim().length > 0)/* || $(headerContainer2.children()[1]).children().length > 0*/){
                             l2++;
                             l3 = 0;
                             let headId = 'autoid-' + l1 + '-' + l2 + '-' + l3;
@@ -183,7 +183,7 @@ function scriptBody(level){
                                     var header3 = $(headerContainer3.find(titleSelector)[0]);
                                     var title3 = htmlEncode(header3.text());
                                     var text3 = htmlEncode(header3.text());
-                                    if((title3 && title3.trim().length > 0) || $(headerContainer3.children()[1]).children().length > 0){
+                                    if((title3 && title3.trim().length > 0)/* || $(headerContainer3.children()[1]).children().length > 0*/){
                                         l3++
                                         let headId = 'autoid-' + l1 + '-' + l2 + '-' + l3;
                                         $(header3.next('.Node-renderedContent')[0]).attr('id', headId);

@@ -15,6 +15,7 @@
         <module>paxos-demo</module>
         <module>web-demo</module>
         <module>spring-boot-demo</module>
+        <module>kotlin-coroutines</module>
         <!--<module>paxos-ref</module>-->
     </modules>
 
