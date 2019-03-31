@@ -160,39 +160,39 @@ function scriptBody(level){
                 $(header1.next('.Node-renderedContent')[0]).attr('id', headId);
                 // if (text1.length > 14) text1 = text1.substr(0, 12) + "...";
                 ulHtml += '<li class="h1Offset"><span>' + l1 + '&nbsp&nbsp</span><a class="head_a level1" id="a_' + headId + '" href="#' + headId + '" title="' + title1 + '">' + text1 + '</a><span class="sideCatalog-dot"></span></li>';
-            }
-            if(iTocLevel >= 2) {
-                $(headerContainer1.children()[1]).children()
-                    .each(function (i) {
-                        var headerContainer2 = $(this).children();
-                        var header2 = $(headerContainer2.find(titleSelector)[0]);
-                        var title2 = htmlEncode(header2.text());
-                        var text2 = htmlEncode(header2.text());
-                        if((title2 && title2.trim().length > 0)/* || $(headerContainer2.children()[1]).children().length > 0*/){
-                            l2++;
-                            l3 = 0;
-                            let headId = 'autoid-' + l1 + '-' + l2 + '-' + l3;
-                            $(header2.next('.Node-renderedContent')[0]).attr('id', headId);
-                            // if (text2.length > 14) text2 = text2.substr(0, 12) + "...";
-                            ulHtml += '<li class="h2Offset"><span>' + l1 + '.' + l2 + '&nbsp&nbsp</span><a class="head_a level2" id="a_' + headId + '" href="#' + headId + '" title="' + title2 + '">' + text2 + '</a></li>';
-                        }
-                        if (iTocLevel >= 3) {
-                            $(headerContainer2.children()[1]).children()
-                                .each(function (i) {
-                                    var headerContainer3 = $(this).children();
-                                    var header3 = $(headerContainer3.find(titleSelector)[0]);
-                                    var title3 = htmlEncode(header3.text());
-                                    var text3 = htmlEncode(header3.text());
-                                    if((title3 && title3.trim().length > 0)/* || $(headerContainer3.children()[1]).children().length > 0*/){
-                                        l3++
-                                        let headId = 'autoid-' + l1 + '-' + l2 + '-' + l3;
-                                        $(header3.next('.Node-renderedContent')[0]).attr('id', headId);
-                                        // if (text3.length > 14) text3 = text3.substr(0, 12) + "...";
-                                        ulHtml += '<li class="h3Offset"><span>' + l1 + '.' + l2 + '.' + l3 + '&nbsp&nbsp</span><a class="head_a level3" id="a_' + headId + '" href="#' + headId + '" title="' + title3 + '">' + text3 + '</a></li>';
-                                    }
-                                });
-                        }
-                    });
+                if(iTocLevel >= 2) {
+                    $(headerContainer1.children()[1]).children()
+                        .each(function (i) {
+                            var headerContainer2 = $(this).children();
+                            var header2 = $(headerContainer2.find(titleSelector)[0]);
+                            var title2 = htmlEncode(header2.text());
+                            var text2 = htmlEncode(header2.text());
+                            if((title2 && title2.trim().length > 0)/* || $(headerContainer2.children()[1]).children().length > 0*/){
+                                l2++;
+                                l3 = 0;
+                                let headId = 'autoid-' + l1 + '-' + l2 + '-' + l3;
+                                $(header2.next('.Node-renderedContent')[0]).attr('id', headId);
+                                // if (text2.length > 14) text2 = text2.substr(0, 12) + "...";
+                                ulHtml += '<li class="h2Offset"><span>' + l1 + '.' + l2 + '&nbsp&nbsp</span><a class="head_a level2" id="a_' + headId + '" href="#' + headId + '" title="' + title2 + '">' + text2 + '</a></li>';
+                                if (iTocLevel >= 3) {
+                                    $(headerContainer2.children()[1]).children()
+                                        .each(function (i) {
+                                            var headerContainer3 = $(this).children();
+                                            var header3 = $(headerContainer3.find(titleSelector)[0]);
+                                            var title3 = htmlEncode(header3.text());
+                                            var text3 = htmlEncode(header3.text());
+                                            if((title3 && title3.trim().length > 0)/* || $(headerContainer3.children()[1]).children().length > 0*/){
+                                                l3++
+                                                let headId = 'autoid-' + l1 + '-' + l2 + '-' + l3;
+                                                $(header3.next('.Node-renderedContent')[0]).attr('id', headId);
+                                                // if (text3.length > 14) text3 = text3.substr(0, 12) + "...";
+                                                ulHtml += '<li class="h3Offset"><span>' + l1 + '.' + l2 + '.' + l3 + '&nbsp&nbsp</span><a class="head_a level3" id="a_' + headId + '" href="#' + headId + '" title="' + title3 + '">' + text3 + '</a></li>';
+                                            }
+                                        });
+                                }
+                            }
+                        });
+                }
             }
         });
 
