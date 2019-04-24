@@ -1,20 +1,21 @@
 {
-  "[]":{
-    "page":0,
-    "count":2,
-    "Moment":{
-      "content$":"%a%"
+  "cf_order": {
+    "properties": {
+      "merchantUserCardNo": {
+        "type": "keyword"
+      }
+    }
+  },
+  "cf_loan": {
+    "_routing": {
+      "required": true
     },
-    "Comment[]":{
-      "Comment":{
-        "momentId@":{
-          "[]":{
-            "Moment":{
-              "content$":"%a%",
-              "@column":"id"
-            }
-          }
-        }
+    "_parent": {
+      "type": "cf_order"
+    },
+    "properties": {
+      "planForMerchantProportion": {
+        "type": "double"
       }
     }
   }

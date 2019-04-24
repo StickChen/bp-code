@@ -84,3 +84,4 @@ src/main/resources/lib/
 src/main/resources/temp/
 src/test/java/com/shallop/bpc/collection/project/
 .idea/sqldialects.xml
+kotlin-coroutines/target/
