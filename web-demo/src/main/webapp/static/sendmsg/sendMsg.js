@@ -9,7 +9,9 @@ $(function () {
         $('#btnSend').click(function () {
             let id = JSON.parse($('#data_currentUser').text()).id;
             sendMsgHT(encodeURI(text1), id).then(function(){
-                sendMsgHT(encodeURI(text2), id)
+                return sendMsgHT(encodeURI(text2), id)
+            }).then(function () {
+
             });
         })
     }else if (href.indexOf("jiayuan") !== -1) {
@@ -20,9 +22,11 @@ $(function () {
             let start = href.indexOf("uid_hash=");
             let to_hash = href.substring(start + 9, start + 9 + 32);
             sendMsgJY(encodeURI(text1), to_hash).then(function(){
-                setTimeout(next, 500);
+                setTimeout(next, 300);
                 function next() {
-                    sendMsgJY(encodeURI(text2), to_hash)
+                    sendMsgJY(encodeURI(text2), to_hash).then(function () {
+
+                    })
                 }
             });
         })
