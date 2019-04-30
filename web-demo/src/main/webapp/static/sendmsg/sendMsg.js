@@ -11,8 +11,9 @@ $(function () {
             sendMsgHT(encodeURI(text1), id).then(function(){
                 return sendMsgHT(encodeURI(text2), id)
             }).then(function () {
-
+                return updateSended(id);
             });
+            // updateSended(id);
         })
     }else if (href.indexOf("jiayuan") !== -1) {
         $("body").append(btnHtml);
@@ -21,11 +22,13 @@ $(function () {
             let href = $("div.ems_bg.col_blue > a").attr("href");
             let start = href.indexOf("uid_hash=");
             let to_hash = href.substring(start + 9, start + 9 + 32);
+            let idText = $('div.member_box > div.member_info_r.yh > h4 > span').text();
+            let id = idText.substring(3, idText.length);
             sendMsgJY(encodeURI(text1), to_hash).then(function(){
                 setTimeout(next, 300);
                 function next() {
                     sendMsgJY(encodeURI(text2), to_hash).then(function () {
-
+                        updateSended(id);
                     })
                 }
             });
@@ -35,6 +38,40 @@ $(function () {
     //     popTips(300, res);
     // });
 })
+
+function updateSended(id) {
+    let queryParam = {
+        "HuaTian":{
+            "outId":id
+        }
+    }
+    return fetch("https://www.longxuanme.com/ext/api/get", {
+        "credentials": "include",
+        "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "Accept-Language": "zh-CN,zh;q=0.9,zh-TW;q=0.8,en;q=0.7",
+            "Content-Type": "application/json;charset=UTF-8"
+        },
+        "body": JSON.stringify(queryParam),
+        "method": "POST",
+        "mode": "cors"
+    }).then(function (rsp) {
+        return rsp.json();
+    }).then(function (rspJson) {
+        let param = {"HuaTian":{"id":rspJson.HuaTian.id,"send":true},"tag":"HuaTian"};
+        return fetch("https://www.longxuanme.com/ext/api/put", {
+            "credentials": "include",
+            "headers": {
+                "Accept": "application/json, text/plain, */*",
+                "Accept-Language": "zh-CN,zh;q=0.9,zh-TW;q=0.8,en;q=0.7",
+                "Content-Type": "application/json;charset=UTF-8"
+            },
+            "body": JSON.stringify(param),
+            "method": "POST",
+            "mode": "cors"
+        });
+    }).then(function (response) {return response.json();}).then(function (myJson) {popTips(200, myJson.code + "::" + myJson.msg)});
+}
 
 function sendMsgHT(msg, id) {
     return fetch("https://love.163.com/messages/add", {
