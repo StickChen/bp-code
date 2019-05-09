@@ -105,7 +105,13 @@ function sendMsgJY(msg, id) {
         "body" : "textfield="+msg+"&list=&category=5&xitong_zidingyi_wenhouyu=1&xitong_zidingyi_wenhouyu=0&new_type=1&pre_url=&sendtype=20&hellotype=hello&pro_id=0&new_profile=3&to_hash="+id+"&fxly=cp_yfq&tj_wz=none&need_fxtyp_tanchu=0&self_pay=0&fxbc=0&cai_xin=0&zhuanti=0&liwu_nofree=0&liwu_nofree_id=88",
         "method" : "POST",
         "mode" : "cors"
-    }).then(function (response) {popTips(200, decodeURI(msg))});
+    }).then(function (response) {
+        if (response.url.indexOf("dosend_ok.php") !== -1) {
+            popTips(200, decodeURI(msg));
+        }else {
+            popTips(200, "发送失败！！！");
+        }
+    });
 }
 
 function popTips(pWidth, content) {
