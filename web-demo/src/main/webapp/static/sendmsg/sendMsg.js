@@ -19,17 +19,21 @@ $(function () {
         $("body").append(btnHtml);
         $('#btnSend').click(function () {
             $('#textfield').val(text2);
-            let href = $("div.ems_bg.col_blue > a").attr("href");
+            let href = $("div.content_705 > div.member_layer > div.fl.pic80 > a").attr("href");
             let start = href.indexOf("uid_hash=");
             let to_hash = href.substring(start + 9, start + 9 + 32);
             let idText = $('div.member_box > div.member_info_r.yh > h4 > span').text();
             let id = idText.substring(3, idText.length);
-            sendMsgJY(encodeURI(text1), to_hash).then(function(){
-                setTimeout(next, 300);
-                function next() {
-                    sendMsgJY(encodeURI(text2), to_hash).then(function () {
-                        updateSended(id);
-                    })
+            sendMsgJY(encodeURI(text1), to_hash).then(function(res){
+                if (res) {
+                    setTimeout(next, 300);
+                    function next() {
+                        sendMsgJY(encodeURI(text2), to_hash).then(function (res) {
+                            if (res) {
+                                updateSended(id);
+                            }
+                        })
+                    }
                 }
             });
         })
@@ -108,8 +112,10 @@ function sendMsgJY(msg, id) {
     }).then(function (response) {
         if (response.url.indexOf("dosend_ok.php") !== -1) {
             popTips(200, decodeURI(msg));
+            return true;
         }else {
             popTips(200, "发送失败！！！");
+            return false;
         }
     });
 }
