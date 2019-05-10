@@ -26,7 +26,7 @@ $(function () {
             let id = idText.substring(3, idText.length);
             sendMsgJY(encodeURI(text1), to_hash).then(function(res){
                 if (res) {
-                    setTimeout(next, 300);
+                    setTimeout(next, 3000);
                     function next() {
                         sendMsgJY(encodeURI(text2), to_hash).then(function (res) {
                             if (res) {
@@ -111,7 +111,7 @@ function sendMsgJY(msg, id) {
         "mode" : "cors"
     }).then(function (response) {
         if (response.url.indexOf("dosend_ok.php") !== -1) {
-            popTips(200, decodeURI(msg));
+            popTips(200, "发送成功："+decodeURI(msg));
             return true;
         }else {
             popTips(200, "发送失败！！！");
