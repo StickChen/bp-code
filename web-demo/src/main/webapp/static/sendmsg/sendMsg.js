@@ -24,18 +24,19 @@ $(function () {
             let to_hash = href.substring(start + 9, start + 9 + 32);
             let idText = $('div.member_box > div.member_info_r.yh > h4 > span').text();
             let id = idText.substring(3, idText.length);
-            sendMsgJY(encodeURI(text1), to_hash).then(function(res){
-                if (res) {
-                    setTimeout(next, 3000);
-                    function next() {
-                        sendMsgJY(encodeURI(text2), to_hash).then(function (res) {
-                            if (res) {
-                                updateSended(id);
-                            }
-                        })
-                    }
-                }
-            });
+            // sendMsgJY(encodeURI(text1), to_hash).then(function(res){
+            //     if (res) {
+            //         setTimeout(next, 3000);
+            //         function next() {
+            //             sendMsgJY(encodeURI(text2), to_hash).then(function (res) {
+            //                 if (res) {
+            //                     updateSended(id);
+            //                 }
+            //             })
+            //         }
+            //     }
+            // });
+            submitMsgTask(to_hash,id);
         })
     }
     // $.post(url, {}, function (res) {
@@ -43,6 +44,20 @@ $(function () {
     // });
 })
 
+function submitMsgTask(to_hash, id) {
+    return fetch("https://www.longxuanme.com/ext/vue/send", {
+    // return fetch("http://localhost/ext/vue/send", {
+        "credentials": "include",
+        "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "Accept-Language": "zh-CN,zh;q=0.9,zh-TW;q=0.8,en;q=0.7",
+            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+        },
+        "body": "outId="+id+"&toHash="+to_hash,
+        "method": "POST",
+        "mode": "cors"
+    }).then(function (response) {return response.json();}).then(function (myJson) {popTips(400, myJson.code + "::" + myJson.msg)});
+}
 function updateSended(id) {
     let queryParam = {
         "HuaTian":{
