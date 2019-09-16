@@ -19,6 +19,5 @@ public class BasicDemo {
     @Test
     public void test1(){
         Boolean aBoolean = (Boolean) false;
-
     }
 }

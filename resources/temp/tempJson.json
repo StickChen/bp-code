@@ -1,22 +1,6 @@
 {
-  "cf_order": {
-    "properties": {
-      "merchantUserCardNo": {
-        "type": "keyword"
-      }
-    }
-  },
-  "cf_loan": {
-    "_routing": {
-      "required": true
-    },
-    "_parent": {
-      "type": "cf_order"
-    },
-    "properties": {
-      "planForMerchantProportion": {
-        "type": "double"
-      }
-    }
-  }
+  "loanId": "2019082273305403",
+  "platPin": "cf_ce8a1669-8f65-420b-a10f-e77d5e97efa7",
+  "oldStatus": "23",
+  "status": "-3"
 }

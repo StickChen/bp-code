@@ -3,15 +3,15 @@
     margin-top: 10px !important;
     font-size: 15px !important;
     font-weight: bold !important;
-    color: #000000 !important;
+    color: #FFF !important;
 }
 .level2{
     margin-top: 5px !important;
     font-size: 15px !important;
-    color: #023f73 !important;
+    color: #A4F4FF !important;
 }
 .level3{
-
+    color: #FCECE4 !important;
 }
 .currentLocation{
     color: #ff0500 !important;
@@ -28,7 +28,7 @@
 .splitter{
     position: fixed;
     width: inherit;
-    background-color: white;
+    background-color: black;
     cursor: ew-resize;
     height: 25px;
     bottom: 0;
@@ -62,7 +62,7 @@
     position: absolute;
     border: 1px #dddddd;
     /*overflow: auto;*/
-    background-color: #fff;
+    background-color: #000;
     height: 100%;
 }
 
@@ -75,7 +75,7 @@
 }
 
 #sideCatalog {
-    background-color: #fff;
+    background-color: #000;
     padding-bottom: 10px;
     border-radius: 5px;
 }
@@ -85,7 +85,7 @@
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;
     -moz-border-top-colors: none;
-    background-color: #eaeaea;
+    background-color: #1c1c1c;
     border-color: #eaeaea;
     border-image: none;
     border-left: 1px solid #eaeaea;
@@ -173,7 +173,7 @@
 #sideCatalog a {
     white-space: nowrap;
     text-decoration: none;
-    color: #555;
+    color: #FFF;
     font-size: 14px;
     font-family:'Arial', 'sans-serif';
 }
@@ -204,10 +204,10 @@
     width: 20px;
     position: relative;
     margin-top: 100px;
-    background-color: #e4e4e4;
+    background-color: #333333;
 }
 #sideCatalogRefreshFirstBtn:hover {
-    background-color: #f2f9ff;
+    background-color: #000000;
 }
 #sideCatalogRefreshSecondBtn{
     cursor: pointer;
@@ -215,10 +215,10 @@
     width: 20px;
     position: relative;
     margin-top: 10px;
-    background-color: #e4e4e4;
+    background-color: #333333;
 }
 #sideCatalogRefreshSecondBtn:hover {
-    background-color: #f2f9ff;
+    background-color: #000000;
 }
 #sideCatalogRefreshBtn{
     cursor: pointer;
@@ -226,11 +226,11 @@
     width: 20px;
     position: relative;
     margin-top: 10px;
-    background-color: #e4e4e4;
+    background-color: #333333;
 }
 
 #sideCatalogRefreshBtn:hover {
-    background-color: #f2f9ff;
+    background-color: #000000;
 }
 
 #sideLocateBtn{
@@ -239,10 +239,10 @@
     width: 20px;
     position: relative;
     margin-top: 10px;
-    background-color: #e4e4e4;
+    background-color: #333333;
 }
 #sideLocateBtn:hover{
-    background-color: #f2f9ff;
+    background-color: #000000;
 }
 
 #sideCatalogBtn {
@@ -255,17 +255,17 @@
     width: 20px;
     margin-top: 10px;
     outline: 0;
-    background-color: #e4e4e4;
+    background-color: #333333;
 }
 
 #sideCatalogBtn:hover {
     /*background: url("http://www.longxuanme.com/resource/image?name=img-20181204152402232.gif") no-repeat scroll -154px 0 transparent*/
-    background-color: #f2f9ff;
+    background-color: #000000;
 }
 
 .sideCatalogBtnEnable {
     /*background: url("http://www.longxuanme.com/resource/image?name=img-20181204152402232.gif") no-repeat scroll -104px 0 transparent !important*/
-    background-color: #f2f9ff !important;
+    background-color: #000000 !important;
 }
 
 #sideToolbar-up {

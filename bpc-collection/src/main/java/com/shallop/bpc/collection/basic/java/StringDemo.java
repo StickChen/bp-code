@@ -11,6 +11,15 @@ import static com.shallop.bpc.collection.utils.Printer.pt;
 public class StringDemo {
 
     @Test
+    public void testSpilt(){
+        String[] split = "".split(",");
+        for (String s : split) {
+            System.out.println(s);
+        }
+        System.out.println(split);
+    }
+    
+    @Test
     public void testStringDemo(){
         System.out.println(String.format("%.1f", 0.694));
     }
