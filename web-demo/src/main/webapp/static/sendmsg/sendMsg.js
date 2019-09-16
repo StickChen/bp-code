@@ -19,19 +19,24 @@ $(function () {
         $("body").append(btnHtml);
         $('#btnSend').click(function () {
             $('#textfield').val(text2);
-            let href = $("div.ems_bg.col_blue > a").attr("href");
+            let href = $("div.content_705 > div.member_layer > div.fl.pic80 > a").attr("href");
             let start = href.indexOf("uid_hash=");
             let to_hash = href.substring(start + 9, start + 9 + 32);
             let idText = $('div.member_box > div.member_info_r.yh > h4 > span').text();
             let id = idText.substring(3, idText.length);
-            sendMsgJY(encodeURI(text1), to_hash).then(function(){
-                setTimeout(next, 300);
-                function next() {
-                    sendMsgJY(encodeURI(text2), to_hash).then(function () {
-                        updateSended(id);
-                    })
-                }
-            });
+            // sendMsgJY(encodeURI(text1), to_hash).then(function(res){
+            //     if (res) {
+            //         setTimeout(next, 3000);
+            //         function next() {
+            //             sendMsgJY(encodeURI(text2), to_hash).then(function (res) {
+            //                 if (res) {
+            //                     updateSended(id);
+            //                 }
+            //             })
+            //         }
+            //     }
+            // });
+            submitMsgTask(to_hash,id);
         })
     }
     // $.post(url, {}, function (res) {
@@ -39,6 +44,20 @@ $(function () {
     // });
 })
 
+function submitMsgTask(to_hash, id) {
+    return fetch("https://www.longxuanme.com/ext/vue/send", {
+    // return fetch("http://localhost/ext/vue/send", {
+        "credentials": "include",
+        "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "Accept-Language": "zh-CN,zh;q=0.9,zh-TW;q=0.8,en;q=0.7",
+            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+        },
+        "body": "outId="+id+"&toHash="+to_hash,
+        "method": "POST",
+        "mode": "cors"
+    }).then(function (response) {return response.json();}).then(function (myJson) {popTips(400, myJson.code + "::" + myJson.msg)});
+}
 function updateSended(id) {
     let queryParam = {
         "HuaTian":{
@@ -105,7 +124,15 @@ function sendMsgJY(msg, id) {
         "body" : "textfield="+msg+"&list=&category=5&xitong_zidingyi_wenhouyu=1&xitong_zidingyi_wenhouyu=0&new_type=1&pre_url=&sendtype=20&hellotype=hello&pro_id=0&new_profile=3&to_hash="+id+"&fxly=cp_yfq&tj_wz=none&need_fxtyp_tanchu=0&self_pay=0&fxbc=0&cai_xin=0&zhuanti=0&liwu_nofree=0&liwu_nofree_id=88",
         "method" : "POST",
         "mode" : "cors"
-    }).then(function (response) {popTips(200, decodeURI(msg))});
+    }).then(function (response) {
+        if (response.url.indexOf("dosend_ok.php") !== -1) {
+            popTips(200, "发送成功："+decodeURI(msg));
+            return true;
+        }else {
+            popTips(200, "发送失败！！！");
+            return false;
+        }
+    });
 }
 
 function popTips(pWidth, content) {
