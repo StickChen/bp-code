@@ -1,4 +1,18 @@
-let tocLevel = '3';
+
+var ls = window.localStorage;
+let href = window.location.href;
+let key = 'sTop-' + href;
+let initScroll = true;
+let lastHeight = 0;
+let nowHeight = 0;
+let intervalScrollHistory;
+var item = ls.getItem(key);
+let levelKey = 'level-' + href;
+let tocLevel = ls.getItem(levelKey);
+if (!tocLevel) {
+    tocLevel = '2';
+}
+
 $(function () {
 
     $('.normal-view').before('<div id="TocContainer"><div id="barSplitterContainer"><div id="sideToolbarContainer"></div><div class="splitter"></div></div><div id="sideCatalogRefreshFirstBtn""></div><div id="sideCatalogRefreshSecondBtn""></div><div id="sideCatalogRefreshBtn" ></div><div id="sideLocateBtn" ></div><a href="javascript:void(0);" id="sideCatalogBtn" ></a></div>');
@@ -22,14 +36,17 @@ $(function () {
     });
     $('#sideCatalogRefreshFirstBtn').on('click', function () {
         tocLevel = "1";
+        ls.setItem(levelKey, tocLevel);
         scriptBody("1")
     })
     $('#sideCatalogRefreshSecondBtn').on('click', function () {
         tocLevel = "2";
+        ls.setItem(levelKey, tocLevel);
         scriptBody("2")
     })
     $('#sideCatalogRefreshBtn').on('click', function () {
         tocLevel = "3";
+        ls.setItem(levelKey, tocLevel);
         scriptBody("3")
         // 太卡了，去掉吧
         // scrollSpy();
@@ -66,13 +83,13 @@ $(function () {
     function intervalBody() {
         if($('.Node-children').length > 1){
             scriptBody();
-            intervalScrollHistory = setInterval(scrollHistory, 1500);
+            intervalScrollHistory = setInterval(scrollHistory, 500);
             clearInterval(intervalScriptBody);
             intervalScriptBody = null;
             if(!observer) {
                 observer = new MutationObserver(function(mutations, observer) {
                     if(!intervalScriptBody) {
-                        intervalScriptBody = setInterval(intervalBody, 3000);
+                        intervalScriptBody = setInterval(intervalBody, 1500);
                     }
                 });
 
@@ -286,14 +303,7 @@ function scrollSpy() {
     });
 }
 
-var ls = window.localStorage;
-let href = window.location.href;
-let key = 'sTop-' + href;
-let initScroll = true;
-let lastHeight = 0;
-let nowHeight = 0;
-let intervalScrollHistory;
-var item = ls.getItem(key);
+
 function scrollHistory() {
     // 页面每次加载的时候获取本地存储里面的值
     if(initScroll === false) {
