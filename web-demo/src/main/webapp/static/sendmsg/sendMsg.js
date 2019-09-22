@@ -45,7 +45,7 @@ $(function () {
 })
 
 function submitMsgTask(to_hash, id) {
-    return fetch("https://www.longxuanme.com/ext/vue/send", {
+    return fetch("http://www.longxuanme.com/ext/vue/send", {
     // return fetch("http://localhost/ext/vue/send", {
         "credentials": "include",
         "headers": {
@@ -64,7 +64,7 @@ function updateSended(id) {
             "outId":id
         }
     }
-    return fetch("https://www.longxuanme.com/ext/api/get", {
+    return fetch("http://www.longxuanme.com/ext/api/get", {
         "credentials": "include",
         "headers": {
             "Accept": "application/json, text/plain, */*",
@@ -78,7 +78,7 @@ function updateSended(id) {
         return rsp.json();
     }).then(function (rspJson) {
         let param = {"HuaTian":{"id":rspJson.HuaTian.id,"send":true},"tag":"HuaTian"};
-        return fetch("https://www.longxuanme.com/ext/api/put", {
+        return fetch("http://www.longxuanme.com/ext/api/put", {
             "credentials": "include",
             "headers": {
                 "Accept": "application/json, text/plain, */*",
