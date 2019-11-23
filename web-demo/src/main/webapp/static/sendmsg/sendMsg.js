@@ -2,7 +2,7 @@ $(function () {
     console.info("sendMsg")
     let href = window.location.href;
     let text1 = '嗨，你好~';
-    let text2 = "我是一枚程序猿，典型的理工男，对你印象不错，有兴趣认识下吗？";
+    let text2 = "程序猿一枚，典型理工男，对你印象不错，有兴趣认识下吗？";
     let btnHtml = '<div id="btnSend" style="position:fixed;top:10%;left:20%;width:100%;height:30px;line-height:30px;margin-top:-15px;cursor: pointer;z-index: 99999;">\n    <p style="background:#000;opacity:0.7;width:100px;color:#fff;text-align:center;padding:10px 10px;margin:0 auto;font-size:12px;border-radius:4px;">发送</p>\n</div>'
     if (href.indexOf("love.163.com") !== -1) {
         $("body").append(btnHtml);
