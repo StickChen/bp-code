@@ -116,7 +116,7 @@ public class RegexDemo {
 
     @Test
     public void testGreedy(){
-
+        p("# Docker".matches("^#+ .*"));
         // 初步认识. * + ?
         p("a".matches("."));// true
         p("aa".matches("aa"));// true
