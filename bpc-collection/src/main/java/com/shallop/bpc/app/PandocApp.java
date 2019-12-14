@@ -24,10 +24,14 @@ public class PandocApp {
 
 //		String path = PandocApp.class.getClassLoader().getResource("D:\\WorkProject\\OpenSource\\CS-Notes\\notes").getPath();
 		File folder = new File("D:\\WorkProject\\OpenSource\\CS-Notes\\notes");
+		handFile(folder);
+	}
+
+	private void handFile(File folder) throws IOException {
 		File[] tempList = folder.listFiles();
 		for (File file : tempList) {
 			if (file.isDirectory()) {
-				continue;
+				handFile(file);
 			}
 			List<String> lines = FileUtils.readLines(file);
 			for (int i = 0; i < lines.size(); i++) {
@@ -39,7 +43,6 @@ public class PandocApp {
 			lines.add(0, "# " + FilenameUtils.getBaseName(file.getName()));
 			FileUtils.writeLines(file, lines);
 		}
-
 	}
 
 }
