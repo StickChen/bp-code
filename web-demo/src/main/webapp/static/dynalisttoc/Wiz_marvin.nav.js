@@ -61,7 +61,7 @@ $(function () {
                 let idStr = $this.attr('id');
                 if(idStr) {
                     let $sideOl = $('#a_' + idStr);
-                    if($sideOl) {
+                    if($sideOl.length > 0) {
                         // 加亮
                         $sideOl.addClass("currentLocation");
                         let top = $sideOl.offset().top;
