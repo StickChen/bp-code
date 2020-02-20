@@ -25,7 +25,7 @@ $(function () {
       <li :class="'h'+level+'Offset'">
         <span class="toggle" v-if="isFolder" @click="toggle">{{ isOpen ? '&nbsp;-' : '+' }}</span>
         <span v-if="!isFolder">&nbsp;&nbsp;</span>
-        <span class="sequence" >{{levelsStr}}</span>
+        <span class="sequence" @click="expandDescendant(item)">{{levelsStr}}</span>
             <a :class="'head_a level' + level" @click.prevent="scrollTo" @dblclick.prevent="expandOneLvl" :id='"a_" + item.id' :href="'#' + item.id" :title="item.name">{{ item.name }}</a>
         <ul v-show="isOpen" v-if="isFolder">
           <tree-item
@@ -154,23 +154,24 @@ $(function () {
                 let $DocumentContainer = $('.DocumentContainer');
                 $DocumentContainer.scrollTop($DocumentContainer.scrollTop() + top - 100);
             },
-            expandOneLvl: function () {
-                // TODO
-                this.expandAllChildren(this.item, ++this.curExpandOneLvl);
+            expandDescendant: function (item) {
+                if (!item.children || !item.children.length) {
+                    return
+                }
+                let _this = this;
+                if (item.isOpen) {
+                    // 如果已经是展开的，说明需要往下展开
+                    item.children.forEach(function (ele) {
+                        _this.expandDescendant(ele);
+                    })
+                }else {
+                    // 未展开则展开即可并结束
+                    item.isOpen = true;
+                }
             },
             toggle: function () {
                 if (this.isFolder) {
                     this.isOpen = !this.isOpen;
-                }
-            },
-            expandAllChildren: function (item, level) {
-                if (level > 0 && item.children && item.children.length) {
-                    level = level--;
-                    let _this = this;
-                    item.children.forEach(function (ele) {
-                        ele.isOpen = true;
-                        _this.expandAllChildren(ele, level);
-                    });
                 }
             },
             makeFolder: function () {

@@ -158,6 +158,9 @@
     font-weight: bold;
     padding-right: 3px
 }
+#sideCatalog span.sequence{
+    cursor: pointer;
+}
 
 #sideCatalog li.h1Offset {
     margin-top: 8px;
