@@ -453,7 +453,8 @@ function recursiveTree(nodes, treeData, level, levelArr){
         let currLevelArr = levelArr.slice();
         let headerContainer = $(this).children();
         let header = $(headerContainer.find(titleSelector)[0]);
-        let title = htmlEncode(header.text());
+        // let title = htmlEncode(header.text());
+        let title = header.text();
         if (title && title.trim().length > 0) {
             currLevelArr.push(++curIndex);
             let headId = 'autoid';
