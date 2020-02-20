@@ -49,7 +49,7 @@ $(function () {
                         <div id="sideCatalog-catalog">
                             <!-- the demo root element -->
                             <ul id="demo">
-                                <tree-item v-for="(item,index) in treeData"
+                                <tree-item :key="index" v-for="(item,index) in treeData"
                                         class="item"
                                         :item="item"
                                         :level='1'
@@ -311,7 +311,7 @@ $(function () {
     $('#sideLocateBtn').on('click', function (e) {
         $(allTitleRenderedSelector).each(function (i) {
             let $this = $(this);
-            if($this.offset().top > 0){
+            if($this.offset().top > 150){
                 let idStr = $this.attr('id');
                 if(idStr) {
                     let $sideOl = $('#a_' + idStr);
