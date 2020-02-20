@@ -221,6 +221,9 @@ $(function () {
                                 if($sideOl.length > 0) {
                                     // 加亮
                                     $sideOl.addClass("currentLocation");
+                                    setTimeout(function () {
+                                        $sideOl.removeClass('currentLocation');
+                                    }, 3000);
                                     let top = $sideOl.offset().top;
                                     $('#barSplitterContainer').scrollTop($('#barSplitterContainer').scrollTop() + top - 100);
                                     return false;
@@ -313,10 +316,14 @@ $(function () {
                 if(idStr) {
                     let $sideOl = $('#a_' + idStr);
                     if($sideOl.length > 0) {
-                        // 隐藏状态
-                        $sideOl.addClass("currentLocation");
                         let top = $sideOl.offset().top;
                         if (top > 0) {
+                            // 根据id找到节点加状态
+                            // 隐藏状态
+                            $sideOl.addClass("currentLocation");
+                            setTimeout(function () {
+                                $sideOl.removeClass('currentLocation');
+                            }, 3000);
                             $('#barSplitterContainer').scrollTop($('#barSplitterContainer').scrollTop() + top - 100);
                             return false;
                         }
