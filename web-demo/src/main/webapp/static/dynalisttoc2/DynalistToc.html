@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DynalistToc</title>
+
+    <script type="text/javascript" src="http://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./jquery-resizable.min.js"></script>
+    <style type="text/css">
+        .content .left{
+            float:left;
+            width:100px;
+            background-color:green;
+        }
+        .content .right{
+            margin-left:110px;
+            background-color:red;
+        }
+        .splitter{
+            float:left;
+            width: 10px;
+            height: 100%;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            $(".left").resizable({
+                handleSelector: ".splitter",
+                resizeHeight: false
+            });
+        })
+    </script>
+</head>
+<body>
+
+<div class="content">
+    <div class="left">
+        <p>Hi, Flo!</p>
+    </div>
+    <div class="splitter"></div>
+</div>
+
+
+<div id="TocContainer">
+    <div id="barSplitterContainer" class="resizable">
+        <div id="sideToolbarContainer">
+            <div id="sideToolbar" style="display:block;">
+                <div class="sideCatalogBg" id="sideCatalog">
+                    <div id="sideCatalog-catalog">
+                        <ul class="nav" style="zoom:1">
+                            <li class="h1Offset"><span>1&nbsp;&nbsp;</span><a class="head_a level1" id="a_autoid-1-0-0"
+                                                                              href="#autoid-1-0-0" title="Help needed? → http://talk.dynalist.io/t/powerpack-3/2744
+">Help needed? → http://talk.dynalist.io/t/powerpack-3/2744
+                            </a><span class="sideCatalog-dot"></span></li>
+                            <li class="h1Offset"><span>2&nbsp;&nbsp;</span><a class="head_a level1" id="a_autoid-2-0-0"
+                                                                              href="#autoid-2-0-0" title="[Powerpack 3 - Guides and examples - Dynalist](https://dynalist.io/d/lzBWy1bl_LtzycHHl-ktmSVB)
+">[Powerpack 3 - Guides and examples - Dynalist](https://dynalist.io/d/lzBWy1bl_LtzycHHl-ktmSVB)
+                            </a><span class="sideCatalog-dot"></span></li>
+                            <li class="h1Offset"><span>3&nbsp;&nbsp;</span><a class="head_a level1" id="a_autoid-3-0-0"
+                                                                              href="#autoid-3-0-0" title="A word of caution
+">A word of caution
+                            </a><span class="sideCatalog-dot"></span></li>
+                            <li class="h1Offset"><span>4&nbsp;&nbsp;</span><a class="head_a level1" id="a_autoid-4-0-0"
+                                                                              href="#autoid-4-0-0" title="Major changes between versions 2 and 3
+">Major changes between versions 2 and 3
+                            </a><span class="sideCatalog-dot"></span></li>
+                            <li class="h1Offset"><span>5&nbsp;&nbsp;</span><a class="head_a level1" id="a_autoid-5-0-0"
+                                                                              href="#autoid-5-0-0" title="How to install in Chrome
+">How to install in Chrome
+                            </a><span class="sideCatalog-dot"></span></li>
+                            <li class="h1Offset"><span>6&nbsp;&nbsp;</span><a class="head_a level1" id="a_autoid-6-0-0"
+                                                                              href="#autoid-6-0-0" title="How to use it in Desktop App
+">How to use it in Desktop App
+                            </a><span class="sideCatalog-dot"></span></li>
+                            <li class="h1Offset"><span>7&nbsp;&nbsp;</span><a class="head_a level1" id="a_autoid-7-0-0"
+                                                                              href="#autoid-7-0-0" title="Features
+">Features
+                            </a><span class="sideCatalog-dot"></span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="splitter" style="touch-action: none;"></div>
+    </div>
+    <div id="sideCatalogRefreshFirstBtn">
+</div>
+<div id="sideCatalogRefreshSecondBtn"></div>
+<div id="sideCatalogRefreshBtn"></div>
+<div id="sideLocateBtn"></div>
+<a href="javascript:void(0);" id="sideCatalogBtn" class="sideCatalogBtnEnable"></a></div>
+
+
+
+</body>
+</html>
