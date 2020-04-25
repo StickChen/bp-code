@@ -235,6 +235,7 @@ $(function () {
                 }
             },
             expandToOne: function () {
+                scriptBody();
                 this.currExpand = 1;
                 this.expandAllTo(this.treeData, 1, 1);
             },
