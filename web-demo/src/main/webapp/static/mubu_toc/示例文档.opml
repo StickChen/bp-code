@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>示例文档</title>
+  </head>
+  <body>
+    <outline text="第一级" _mubu_text="%3Cspan%3E%E7%AC%AC%E4%B8%80%E7%BA%A7%3C/span%3E" _note="" _mubu_note="">
+      <outline text="第二级" _mubu_text="%3Cspan%3E%E7%AC%AC%E4%BA%8C%E7%BA%A7%3C/span%3E" _note="" _mubu_note="">
+        <outline text="第三极" _mubu_text="%3Cspan%3E%E7%AC%AC%E4%B8%89%E6%9E%81%3C/span%3E" _note="" _mubu_note=""/>
+      </outline>
+      <outline text="第二级" _mubu_text="%3Cspan%3E%E7%AC%AC%E4%BA%8C%E7%BA%A7%3C/span%3E" _note="" _mubu_note=""/>
+    </outline>
+    <outline text="第一级" _mubu_text="%3Cspan%3E%E7%AC%AC%E4%B8%80%E7%BA%A7%3C/span%3E" _note="" _mubu_note="">
+      <outline text="第二级" _mubu_text="%3Cspan%3E%E7%AC%AC%E4%BA%8C%E7%BA%A7%3C/span%3E" _note="" _mubu_note="">
+        <outline text="第三极" _mubu_text="%3Cspan%3E%E7%AC%AC%E4%B8%89%E6%9E%81%3C/span%3E" _note="" _mubu_note=""/>
+      </outline>
+      <outline text="第二级" _mubu_text="%3Cspan%3E%E7%AC%AC%E4%BA%8C%E7%BA%A7%3C/span%3E" _note="" _mubu_note=""/>
+    </outline>
+  </body>
+</opml>

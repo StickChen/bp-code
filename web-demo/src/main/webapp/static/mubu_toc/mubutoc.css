@@ -1,0 +1,292 @@
+.toggle{
+    cursor: pointer;
+}
+.level1{
+    /*margin-top: 10px !important;*/
+    font-size: 15px !important;
+    font-weight: bold !important;
+    color: #FFF !important;
+}
+.level2{
+    /*margin-top: 5px !important;*/
+    font-size: 15px !important;
+    color: #A4F4FF !important;
+}
+.level3{
+    color: #FCECE4 !important;
+}
+.currentLocation{
+    color: #720811 !important;
+    font-weight: bold !important;
+}
+#barSplitterContainer{
+    width: 280px;
+    position: absolute;
+    border: 1px #dddddd;
+    overflow-x: hidden;
+    height: calc(100% - 25px);
+    padding-top: 20px;
+}
+.splitter{
+    position: fixed;
+    width: inherit;
+    background-color: black;
+    cursor: ew-resize;
+    height: 25px;
+    bottom: 0;
+}
+.cssVisibility{
+    visibility: hidden;
+}
+
+#TocContainer{
+    z-index: 120;
+    position: absolute;
+    height: 100%;
+    width:0;
+    /*margin-top: 26px;*/
+}
+
+#sideToolbarContainer{
+    margin-bottom: 25px;
+    border: 1px #dddddd;
+    overflow: auto;
+    height: auto;
+}
+
+#sideToolbar {
+    /*position: fixed;
+    bottom: -12px;
+    right: 25px;
+    height: 440px;*/
+    min-width: 250px;
+    margin-left: 20px;
+    position: absolute;
+    border: 1px #dddddd;
+    /*overflow: auto;*/
+    background-color: #000;
+    height: calc(100% - 20px);
+}
+
+#sideToolbar ul, #sideToolbar ol {
+    padding: 0px;
+}
+
+#sideToolbar li {
+    list-style: none;
+}
+
+#sideCatalog {
+    background-color: #000;
+    padding-bottom: 10px;
+    border-radius: 5px;
+}
+
+#sideCatalog-sidebar {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #1c1c1c;
+    border-color: #eaeaea;
+    border-image: none;
+    border-left: 1px solid #eaeaea;
+    border-right: 1px solid #eaeaea;
+    border-style: none solid;
+    border-width: 0 1px;
+    left: 5px;
+    position: absolute;
+    top: 0;
+    width: 0
+}
+
+#sideCatalog-catalog {
+    /*padding-top: 18px;*/
+    overflow: hidden;
+    /*padding-left: 23px;*/
+    position: relative
+}
+
+#sideCatalog #sideCatalog-sidebar .sideCatalog-sidebar-top {
+    cursor: pointer;
+    top: 0
+}
+
+#sideCatalog #sideCatalog-sidebar .sideCatalog-sidebar-bottom {
+    bottom: 0
+}
+
+#sideCatalog #sideCatalog-sidebar .sideCatalog-sidebar-top, #sideCatalog #sideCatalog-sidebar .sideCatalog-sidebar-bottom {
+    background: url("http://www.longxuanme.com/resource/image?name=img-20181204152402232.gif") no-repeat scroll 0 -199px transparent;
+    height: 10px;
+    left: -5px;
+    overflow: hidden;
+    position: absolute;
+    width: 10px
+}
+
+#sideCatalog li {
+    margin: 0;
+    padding: 0 7px;
+    text-align: left;
+    position: relative;
+    margin-top: 1px;
+    width: 600px;
+}
+/*
+#sideCatalog li:hover {
+    background-color: #f5f5f5
+}
+*/
+
+#sideCatalog-catalog ul .active {
+    background-color: #f5f5f5
+}
+
+#sideCatalog-catalog .active a {
+    color: #519cea
+}
+
+#sideCatalog-catalog a:hover {
+    color: #519cea
+}
+
+#sideCatalog span:first-child,#sideCatalog span.sequence {
+    color: #999;
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: bold;
+    padding-right: 3px
+}
+#sideCatalog span.sequence{
+    cursor: pointer;
+}
+
+#sideCatalog li.h1Offset {
+    margin-top: 8px;
+}
+#sideCatalog li.h2Offset {
+    /*padding-left: 45px;*/
+    /*text-indent: -25px;*/
+    margin-top: 5px;
+}
+
+#sideCatalog li.h3Offset {
+    /*padding-left: 90px;*/
+    /*text-indent: -50px*/
+}
+
+#sideCatalog a {
+    white-space: nowrap;
+    text-decoration: none;
+    color: #FFF;
+    font-size: 14px;
+    font-family:'Arial', 'sans-serif';
+    display:-moz-inline-box;
+    display:inline-block;
+    width: 400px;
+}
+
+.sideCatalog-dot {
+    background: url("http://www.longxuanme.com/resource/image?name=img-20181204152402232.gif") repeat scroll 0 -222px transparent;
+    cursor: pointer;
+    font-size: 12px;
+    height: 10px;
+    left: -20px;
+    line-height: 12px;
+    overflow: hidden;
+    position: absolute;
+    top: 4px;
+    width: 6px
+}
+
+#sideCatalog .highlight .sideCatalog-dot {
+    background: url("http://www.longxuanme.com/resource/image?name=img-20181204152402232.gif") no-repeat scroll -271px -38px transparent;
+    height: 13px;
+    left: -23px;
+    top: 3px;
+    width: 18px
+}
+#sideCatalogRefreshFirstBtn{
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    position: relative;
+    margin-top: 100px;
+    background-color: #333333;
+}
+#sideCatalogRefreshFirstBtn:hover {
+    background-color: #000000;
+}
+#sideCatalogRefreshSecondBtn{
+    cursor: pointer;
+    height: 25px;
+    width: 20px;
+    position: relative;
+    margin-top: 10px;
+    background-color: #333333;
+}
+#sideCatalogRefreshSecondBtn:hover {
+    background-color: #000000;
+}
+#sideCatalogRefreshBtn{
+    cursor: pointer;
+    height: 30px;
+    width: 20px;
+    position: relative;
+    margin-top: 10px;
+    background-color: #333333;
+}
+
+#sideCatalogRefreshBtn:hover {
+    background-color: #000000;
+}
+
+#sideLocateBtn{
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    position: relative;
+    margin-top: 10px;
+    background-color: #333333;
+}
+#sideLocateBtn:hover{
+    background-color: #000000;
+}
+
+#sideCatalogBtn {
+    /*background: url("http://www.longxuanme.com/resource/image?name=img-20181204152402232.gif") no-repeat scroll 0 0 transparent;*/
+    background-size: 20px;
+    cursor: pointer;
+    display: block;
+    height: 50%;
+    position: relative;
+    width: 20px;
+    margin-top: 10px;
+    outline: 0;
+    background-color: #333333;
+}
+
+#sideCatalogBtn:hover {
+    /*background: url("http://www.longxuanme.com/resource/image?name=img-20181204152402232.gif") no-repeat scroll -154px 0 transparent*/
+    background-color: #000000;
+}
+
+.sideCatalogBtnEnable {
+    /*background: url("http://www.longxuanme.com/resource/image?name=img-20181204152402232.gif") no-repeat scroll -104px 0 transparent !important*/
+    background-color: #000000 !important;
+}
+
+#sideToolbar-up {
+    background: url("http://www.longxuanme.com/resource/image?name=img-20181204152402232.gif") no-repeat scroll -1px -62px transparent;
+    border-radius: 2px;
+    display: block;
+    height: 45px;
+    margin-left: 5px;
+    width: 45px;
+    outline: 0
+}
+
+#sideToolbar-up:hover {
+    background: url("http://www.longxuanme.com/resource/image?name=img-20181204152402232.gif") no-repeat scroll -74px -62px transparent
+}
