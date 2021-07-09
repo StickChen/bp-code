@@ -42,6 +42,32 @@ let jwtToken;
     };
 })(XMLHttpRequest.prototype.open);
 
+// XMLHttpRequest.prototype.__open = XMLHttpRequest.prototype.open;
+// XMLHttpRequest.prototype.open = function (method, url, async, user, password) {
+//     // 用对象便于修改参数
+//     let options = {
+//         method: method,
+//         url: url,
+//         async: async,
+//         user: user,
+//         password: password
+//     };
+//     this.addEventListener("readystatechange", function () {
+//         if (this.readyState === 4) {
+//             // 在这可以获取到response数据，并且修改
+//             if (url.endsWith("/api/document/edit/get")) {
+//                 this._requestHeaders.forEach(function (item) {
+//                     if (item[0] === 'Jwt-Token') {
+//                         jwtToken = item[1]
+//                     }
+//                 })
+//                 currDoc = JSON.parse(JSON.parse(this.responseText).data.definition);
+//             }
+//         }
+//     }, false);
+//     this.__open(options.method, options.url, options.async);
+// };
+
 // 加载延时
 intervalInit = setInterval(function () {
     if ($('#js-app-left-panel').length > 0 && currDoc) {
@@ -186,11 +212,15 @@ function initToc() {
         created() {
         },
         methods: {
-            scrollTo: function () {
+            scrollTo: function (prePos, count = 0) {
+                if (count > 10) {
+                    return
+                }
                 let $document = $('#js-doc-wrap');
                 // 导航到指定位置
                 let targetId = this.item.id;
                 let offset = $(".outliner-node[data-id='" + targetId + "'").offset();
+                let ctx = this;
                 if (offset) {
                     let top = offset.top;
                     $document.scrollTop($document.scrollTop() + top - 100);
@@ -209,10 +239,17 @@ function initToc() {
                             return false
                         }
                     })
-                    if (this.traverseNode(this.treeData, targetId, idStr) === 'before') {
+                    let pos = this.traverseNode(this.treeData, targetId, idStr);
+                    if (pos === 'before' && prePos !== 'after') {
                         $document.scrollTop($document.scrollTop() - window.outerHeight * 1.5);
-                    }else {
+                        setTimeout(function () {
+                            ctx.scrollTo(pos, count + 1)
+                        }, 100);
+                    }else if(pos === 'after' && prePos !== 'before'){
                         $document.scrollTop($document.scrollTop() + window.outerHeight * 1.5);
+                        setTimeout(function () {
+                            ctx.scrollTo(pos, count + 1)
+                        }, 100);
                     }
                 }
             },
@@ -394,10 +431,11 @@ function initToc() {
 
     // 反向定位
     $('#sideLocateBtn').on('click', function (e) {
-        $(allTitleRenderedSelector).each(function (i) {
+        console.log("sideLocateBtn click")
+        $(".outliner-node").each(function (i) {
             let $this = $(this);
             if($this.offset().top > 150){
-                let idStr = $this.attr('id');
+                let idStr = $this.attr('data-id');
                 if(idStr) {
                     let $sideOl = $('#a_' + idStr);
                     if($sideOl.length > 0) {
@@ -425,7 +463,7 @@ function initToc() {
     });
 
     // 首次加载
-    let intervalScriptBody = setInterval(intervalBody, 1500);
+    let intervalScriptBody = setInterval(intervalBody, 5000);
 
     // 自动刷新
     MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
@@ -444,7 +482,7 @@ function initToc() {
             if(!observer) {
                 observer = new MutationObserver(function(mutations, observer) {
                     if(!intervalScriptBody) {
-                        intervalScriptBody = setInterval(intervalBody, 1500);
+                        intervalScriptBody = setInterval(intervalBody, 60000);
                     }
                 });
 
@@ -460,7 +498,7 @@ function initToc() {
 
     $(window).bind('hashchange', function() {
         if(!intervalScriptBody) {
-            intervalScriptBody = setInterval(intervalBody, 1500);
+            intervalScriptBody = setInterval(intervalBody, 60000);
         }
     });
 }
